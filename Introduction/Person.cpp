@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 using namespace std;
 int main()
 {
@@ -67,13 +68,13 @@ int main()
     // cout << a << '%' + b << '=' << (a % b) << "\n";
 
     //
-    float triangleequalSides, trianglebase;
 
-    cout << "Please enter triangle sides length ,1-triangleequalSides 2-  trianglebase? \n";
-    cin >> triangleequalSides;
-    cin >> trianglebase;
-    const double PI = 3.141592653589793;
-    float circleArea = (PI * trianglebase * trianglebase / 4) * ((2 * triangleequalSides - trianglebase) / (2 * triangleequalSides + trianglebase));
-    cout << fixed << setprecision(3); // 4 أرقام بعد الفاصلة
-    cout << "circle area is : " << circleArea;
+    float loanAmount, numOfMonths;
+    cout << "Please enter Loan Amounts   : \n ";
+    cin >> loanAmount;
+    cout << "Please enter  num of months   : \n ";
+    cin >> numOfMonths;
+
+    float loanPerMonth = loanAmount / numOfMonths;
+    cout << "Loan Per Month : " << loanPerMonth << endl;
 }
