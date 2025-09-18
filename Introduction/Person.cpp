@@ -77,4 +77,13 @@ int main()
 
     float loanPerMonth = loanAmount / numOfMonths;
     cout << "Loan Per Month : " << loanPerMonth << endl;
+
+   float rectangleSide;
+  float rectangleDiagonal;
+  cout << "Please enter rectangleSide   : \n ";
+    cin >> loanAmount;
+  cout << "Please enter rectangleDiagonal  : \n ";
+    cin >> loanAmount;
+
+
 }

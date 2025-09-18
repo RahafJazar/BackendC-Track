@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
 int main()
 {
@@ -54,11 +55,38 @@ int main()
      cout << "I am " << myAge << "years old\n";
 
      char char1 = 'A', char2 = 'B';
-     cout << char1 << char2 << " Reversed is " << char2 << char1;
+     cout << char1 << char2 << " Reversed is " << char2 << char1 << endl;
 
      int age = 10;
-     const int myNum=50;
- 
+     const int myNum = 50;
 
-     
+     // increment and decrement
+     int a = 10, b = 20;
+     a++;
+     b++;
+
+     cout << "A = " << a << endl;
+     cout << "B = " << b << endl;
+
+     // Math
+     double x = 64;
+     cout << "square of " << x << "is " << sqrt(x) << "\n";
+     x += x;
+     cout << "square of " << x << "is " << sqrt(x) << "\n";
+
+     cout << "round of " << 2.7 << "is " << round(2.7) << "\n";
+     cout << "round of " << 2.5 << "is " << round(2.5) << "\n";
+     cout << "round of " << 2.32 << "is " << round(2.32) << "\n";
+     cout << "round of " << "sqrt ( " << x << " ) is  :" << round(sqrt(x)) << "\n";
+
+     cout << " 4 power 4  is : " << pow(4, 4) << "\n";
+     cout << " ceil of 2.8  is : " << ceil(2.8) << "\n";
+     cout << "ceil of 2.1 is : " << ceil(2.1) << "\n";
+     cout << "floor of 2.1 is : " << floor(2.1) << "\n";
+     cout << "floor of 2.8 is : " << floor(2.8) << "\n";
+     cout << "floor of -2.8 is : " << floor(-2.8) << "\n";
+     cout << "ceil of -2.8 is : " << ceil(-2.8) << "\n";
+
+     cout << "abs  of -2.8 is : " << abs(-2.8) << "\n";
+     cout << "abs of 2.8 is : " << abs(2.8) << "\n";
 }
