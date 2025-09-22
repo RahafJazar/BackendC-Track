@@ -89,4 +89,55 @@ int main()
 
      cout << "abs  of -2.8 is : " << abs(-2.8) << "\n";
      cout << "abs of 2.8 is : " << abs(2.8) << "\n";
+
+     // convert  double to int
+     int num1;
+     double num2 = 39.99;
+
+     num1 = num2;      // implicit casting ;
+     num1 = (int)num2; // explicit coversion
+     num1 = int(num2); // explicit converion (function)
+     cout << num1 << endl;
+
+     string str = "123.457966456546546883";
+
+     // convert string to double
+     double num_double = stod(str);
+     // convert string to int
+     int num_int = stoi(str);
+     // convert string to float
+     float num_float = stof(str);
+
+     cout << num_double << "\n";
+
+     cout << num_int << "\n";
+     cout << num_float << endl;
+
+     // double to string
+     string st1, st2;
+     st1 = to_string(num_int);
+     st2 = to_string(num_double);
+     cout << st1 << "\n";
+     cout << st2 << endl;
+
+     // HW Type conversion
+     string str1 = "43.22";
+     int N1 = 20;
+     double N2 = 33.5;
+     float N3 = 55.33;
+
+     // str ==> double ,float ,int
+     cout << stod(str1) << "\n";
+     cout << stof(str1) << "\n";
+     cout << stoi(str1) << endl;
+     // int -->string
+     cout << to_string(N1) << "\n";
+     // double -->string
+     cout << to_string(N2) << "\n";
+     // float -->string,int
+     cout << to_string(N3) << "\n";
+     cout << int(N3) << endl;
+     cout << (int)N3 << endl;
+
+     
 }
