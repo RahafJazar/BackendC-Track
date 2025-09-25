@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cmath>
 using namespace std;
 enum enGender
 {
@@ -84,9 +85,128 @@ void printH()
     ;
 }
 
+// hw1
+void sumofTwoNumbersPeocedure()
+{
+    short n1, n2;
+    cout << "please enter num1" << "\n";
+    cin >> n1;
+    cout << "please enter mum2" << "\n";
+    cin >> n2;
+    cout << n1 + n2 << endl;
+}
+
+short sumofTwoNumbersFunction()
+{
+    short n1, n2;
+    cout << "please enter num1" << "\n";
+    cin >> n1;
+    cout << "please enter mum2" << "\n";
+    cin >> n2;
+    return n1 + n2;
+}
+
+// hw2
+short mySumWithParameters(short n1, short n2)
+{
+    return n1 + n2;
+}
+
+// hw3
+
+// Student Management Projec
+int totalStudents = 0;
+enum Grade
+{
+    FAIL,
+    PASSS,
+    EXCELLENT
+};
+struct Student
+{
+    /* data */
+    string name;
+    int age;
+    string subject;
+    double mark;
+    Grade grade;
+};
+// function to evaluate grade
+Grade evaluateGrade(double mark)
+{
+    if (mark > 80)
+        return EXCELLENT;
+    else if (mark > 50)
+        return PASSS;
+    else
+        return FAIL;
+}
+// function to display one student
+void displayStudent(const Student &s)
+{
+    cout << "Name : " << s.name << ","
+         << "Age: " << s.age << ","
+         << "Subject" << s.subject
+         << "Grade ";
+    switch (s.grade)
+    {
+    case FAIL:
+        /* code */
+        cout << "FAIL " << endl;
+        break;
+    case PASSS:
+        /* code */
+        cout << "pASS " << endl;
+        break;
+    case EXCELLENT:
+        /* code */
+        cout << "EXCELLENT " << endl;
+        break;
+
+    default:
+        break;
+    }
+}
+
+// Ffunction createstudent
+Student createStudent()
+{
+    Student s;
+    cout << "Enter Your name";
+    cin >> s.name;
+    cout << "Enter your age";
+    cin >> s.age;
+    cout << "Enter marks: ";
+    cin >> s.mark;
+
+    double grade = evaluateGrade(s.mark);
+    totalStudents++;
+    return s;
+}
+
 int main()
 {
-    string result = myFunction3();
-    cout << result << endl;
+
+    int n;
+    cout << "How many students? ";
+    cin >> n;
+
+    Student students[100]; // array of struct
+
+    // for loop to input students
+    for (int i = 0; i < n; i++)
+    {
+        cout << "\n--- Enter Student " << i + 1 << " ---" << endl;
+        students[i] = createStudent();
+    }
+
+    cout << "\n===== Student List =====\n";
+    // for loop to display students
+    for (int i = 0; i < n; i++)
+    {
+        displayStudent(students[i]);
+    }
+
+    cout << "\nTotal students added = " << totalStudents << endl;
     return 0;
 }
