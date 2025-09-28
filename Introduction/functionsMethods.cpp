@@ -122,7 +122,7 @@ enum Grade
     PASSS,
     EXCELLENT
 };
-struct Student
+struct stStudent
 {
     /* data */
     string name;
@@ -142,7 +142,7 @@ Grade evaluateGrade(double mark)
         return FAIL;
 }
 // function to display one student
-void displayStudent(const Student &s)
+void displayStudent(const stStudent &s)
 {
     cout << "Name : " << s.name << ","
          << "Age: " << s.age << ","
@@ -169,9 +169,9 @@ void displayStudent(const Student &s)
 }
 
 // Ffunction createstudent
-Student createStudent()
+stStudent createStudent()
 {
-    Student s;
+    stStudent s;
     cout << "Enter Your name";
     cin >> s.name;
     cout << "Enter your age";
@@ -191,7 +191,7 @@ int main()
     cout << "How many students? ";
     cin >> n;
 
-    Student students[100]; // array of struct
+    stStudent students[100]; // array of struct
 
     // for loop to input students
     for (int i = 0; i < n; i++)

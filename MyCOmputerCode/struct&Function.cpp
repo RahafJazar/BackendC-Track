@@ -11,14 +11,14 @@ struct strInfo
 };
 void readInfo(strInfo &info)
 {
-    cout << "Enter Your first name : ";
+    cout << "Enter Your first name";
     getline(cin, info.FirstName);
-    cout << "Enter Your last name : ";
+    cout << "Enter Your last name";
     getline(cin, info.LastName);
-    cout << "Enter Your  age : ";
+    cout << "Enter Your  age";
     cin >> info.Age;
     cin.ignore(0, '\n');
-    cout << "Enter  Tour phone : ";
+    cout << "Enter  Tour phone ";
     cin >> info.phone;
 }
 void printInfo(strInfo info)
