@@ -9,8 +9,9 @@ struct strInfo
     int Age;
     string phone;
 };
-void readInfo(strInfo &info)
-{
+void readInfo(strInfo  info[2])
+{   
+    for(int i=0 ;i<)
     cout << "Enter Your first name";
     getline(cin, info.FirstName);
     cout << "Enter Your last name";

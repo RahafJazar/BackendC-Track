@@ -60,16 +60,22 @@ void readInfo(strInfo &info)
     cin >> info.Phone;
     cin.ignore(1, '\n');
 }
-void readInfos(strInfo info[2])
+void readInfos(strInfo info[100], int &Length)
+
 {
-    for (int i = 0; i < 2; i++)
+    cout << "Enter Number Of Persons To enter ?  \n";
+    cin >> Length;
+    cin.ignore(1, '\n');
+    for (int i = 0; i <= Length - 1; i++)
     {
+        cout << "Person : " << i + 1;
         readInfo(info[i]);
     }
 }
 
 void printInfo(strInfo &info)
 {
+
     cout << "***************************************" << endl;
     cout << "First Name : " << info.FirstName << "\n";
     cout << "Last Name: " << info.LastName << "\n";
@@ -78,10 +84,11 @@ void printInfo(strInfo &info)
     // cout << "Gender  : " << enGender << "\n";
     cout << "***************************************" << endl;
 }
-void printInfos(strInfo info[2])
+void printInfos(strInfo info[100], int Length)
 {
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i <= Length - 1; i++)
     {
+
         printInfo(info[i]);
     }
 }
@@ -94,11 +101,10 @@ int main()
     // float avg = averageGrades(grades);
     // cout << "The average of grades is " << avg;
 
-    strInfo Persons[2]; // array of struct
-    Persons[0].FirstName = "Rahaf";
-    Persons[0].LastName = "Jazar";
-    readInfos(Persons);
-    printInfos(Persons);
+    strInfo Persons[100]; // array of struct
+    int Length = 0;
+    readInfos(Persons, Length);
+    printInfos(Persons, Length);
 
     // int x[3];
     // readArrayData( x);
