@@ -29,16 +29,45 @@ void showMenu()
 
 enWeekDay ReadWeekDay()
 {
+    int dayNumber;
+    cin >> dayNumber;
+    return (enWeekDay)dayNumber;
 }
 
 string GetWeekDayName(enWeekDay day)
 {
+    switch (day)
+    {
+    case enWeekDay::Sun:
+        return "Sunday";
+        break;
+    case enWeekDay::Mon:
+        return "Monday";
+        break;
+    case enWeekDay::Tue:
+        return "Tuesday";
+        break;
+    case enWeekDay::Wed:
+        return "Wednesday";
+        break;
+    case enWeekDay::Thu:
+        return "Thursday";
+        break;
+    case enWeekDay::Fri:
+        return "Friday";
+        break;
+    case enWeekDay::Sat:
+        return "Saturday";
+        break;
+
+    default:
+        return "not a week day ";
+        break;
+    }
 }
 
 int main()
 {
     showMenu();
-    short day;
-
-    cin >> day;
+    cout << "Today is " << GetWeekDayName(ReadWeekDay());
 }
