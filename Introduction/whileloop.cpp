@@ -1,32 +1,27 @@
 #include <iostream>
+#include <string>
+#include <cmath>
 using namespace std;
-
-int ReadNumber()
+string readPinCode()
 {
-
-    int number;
-    cout << "enter Scope of number to print" << endl;
-    cin >> number;
-    return number;
+    string pin;
+    cout << "enter PIN Code , 1234 get balance?" << "\n";
+    getline(cin, pin);
+    return pin;
 }
-int FactorialOfN(int N)
+string validatePIN(string &pinCode)
 {
-    double factorial = 1;
-    while (N < 0)
+    string balance = "7500";
+    while (pinCode != "1234")
     {
-        cout << "InValid Number please enter positive number";
-        ReadNumber();
+        /* code */
+        pinCode = readPinCode();
     }
 
-    for (int i = N; i >= 1; i--)
-    {
-        factorial = factorial * i;
-    }
-    return factorial;
+    return "Your Balance is : " + balance;
 }
 int main()
 {
-    int selectedNumber = ReadNumber();
-    int fact = FactorialOfN(selectedNumber);
-    cout << "Factorial of  " << selectedNumber << "Is : " << fact;
+    string pin = readPinCode();
+    cout << validatePIN(pin) << endl;
 }
