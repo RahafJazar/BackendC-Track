@@ -1,48 +1,35 @@
 #include <iostream>
 
 using namespace std;
-enum enPrinDir
+void readNumbers(int &num1, int &num2, int &num3)
 {
-    FirstNameLastName,
-    LastNameFistName
-
-};
-struct strInfo
-{
-    string FirstName;
-    string LastName;
-};
-
-strInfo readInfo()
-{
-    strInfo info;
-    cout << "Enter Your  First Name  ?" << "\n";
-    cin >> info.FirstName;
-    cout << "Enter Your Last Name " << "\n";
-    cin >> info.LastName;
-
-    return info;
+    cout << "Please Enter Num 1 : \n";
+    cin >> num1;
+    cout << "Please Enter Num 2 : \n";
+    cin >> num2;
+    cout << "Please Enter Num 3 : \n";
+    cin >> num3;
 }
 
-string getFullName(strInfo info, enPrinDir printDir)
+int sumOf3Numbers(int &num1, int &num2, int &num3)
 {
-    string fullName = "";
-    if (printDir == enPrinDir::LastNameFistName)
-        fullName = info.LastName + " " + info.FirstName;
-    else
-        fullName = info.FirstName + " " + info.LastName;
-    return fullName;
+    int sum = num1 + num2 + num3;
+    return sum;
 }
 
-void printFullName(string fullname)
+float calculateAvg(int &num1, int &num2, int &num3)
 {
-
-    cout << "Your Full Name is: " << fullname << endl;
+    float Avg = (float)sumOf3Numbers(num1, num2, num3) / 3;
+    return Avg;
+}
+void printResults(float Average)
+{
+    string result = "Average of numbers is : ";
+    cout << result << Average;
 }
 int main()
 {
-
-    strInfo info = readInfo();
-    string fullname = getFullName(info, enPrinDir::FirstNameLastName);
-    printFullName((fullname));
+    int num1, num2, num3;
+    readNumbers(num1, num2, num3);
+    printResults(calculateAvg(num1, num2, num3));
 }
