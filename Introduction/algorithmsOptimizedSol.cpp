@@ -1,35 +1,37 @@
 #include <iostream>
-
+#include <cmath>
 using namespace std;
-void readNumbers(int &num1, int &num2, int &num3)
+struct strTriangle
 {
-    cout << "Please Enter Num 1 : \n";
-    cin >> num1;
-    cout << "Please Enter Num 2 : \n";
-    cin >> num2;
-    cout << "Please Enter Num 3 : \n";
-    cin >> num3;
-}
+    /* data */
+    float base;
+    float height
+};
 
-int sumOf3Numbers(int &num1, int &num2, int &num3)
+strTriangle ReadInputs()
 {
-    int sum = num1 + num2 + num3;
-    return sum;
+    strTriangle triangleInfo;
+    cout << "Please enter triangle  base ? \n";
+    cin >> triangleInfo.base;
+    cout << "Please enter  triangle height? \n";
+    cin >> triangleInfo.height;
+    return triangleInfo;
 }
-
-float calculateAvg(int &num1, int &num2, int &num3)
+float calculateTriangleArea(strTriangle triangleInfo)
 {
-    float Avg = (float)sumOf3Numbers(num1, num2, num3) / 3;
-    return Avg;
+    float rectangleArea =   rectangleInfo.rectangleSide * sqrt(pow(rectangleInfo.rectangleDiagonal, 2) - pow(rectangleInfo.rectangleSide, 2));
+    return rectangleArea;
 }
-void printResults(float Average)
+void printResult(float area)
 {
-    string result = "Average of numbers is : ";
-    cout << result << Average;
+    cout << "\n Rectangle area is :" << area;
 }
 int main()
 {
-    int num1, num2, num3;
-    readNumbers(num1, num2, num3);
-    printResults(calculateAvg(num1, num2, num3));
+    strRectangle strInfo = ReadInputs();
+    printResult(calculateRectangleArea(strInfo));
+    return 0;
 }
+
+
+ 
