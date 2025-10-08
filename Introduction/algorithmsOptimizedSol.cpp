@@ -1,37 +1,36 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-struct strTriangle
-{
-    /* data */
-    float base;
-    float height
-};
 
-strTriangle ReadInputs()
+short ReadAge()
 {
-    strTriangle triangleInfo;
-    cout << "Please enter triangle  base ? \n";
-    cin >> triangleInfo.base;
-    cout << "Please enter  triangle height? \n";
-    cin >> triangleInfo.height;
-    return triangleInfo;
+    short age;
+    cout << "Enter Your Age between 18 and 45 ? " << "\n";
+    cin >> age;
+    return age;
 }
-float calculateTriangleArea(strTriangle triangleInfo)
+bool validateNumberInRange(short number, short from, short to)
 {
-    float rectangleArea =   rectangleInfo.rectangleSide * sqrt(pow(rectangleInfo.rectangleDiagonal, 2) - pow(rectangleInfo.rectangleSide, 2));
-    return rectangleArea;
+    return (number >= from && number <= to);
 }
-void printResult(float area)
+
+short ReadUntiAgeBetween(short from, short to)
 {
-    cout << "\n Rectangle area is :" << area;
+    short age = 0;
+    do
+    {
+        age = ReadAge();
+    } while (!validateNumberInRange(age, from, to));
+
+    return age;
+}
+
+void PrintResult(short age)
+{
+    cout << "\n your age is : " << age << endl;
 }
 int main()
 {
-    strRectangle strInfo = ReadInputs();
-    printResult(calculateRectangleArea(strInfo));
-    return 0;
+
+    PrintResult(ReadUntiAgeBetween(18, 45));
 }
-
-
- 
