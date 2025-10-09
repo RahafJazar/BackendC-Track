@@ -2,111 +2,37 @@
 #include <cmath>
 using namespace std;
 
-int ReadNumber()
-{
+int ReadNumber(int &N ,int M)
 
-    int number;
-    cout << "enter Scope of number to print" << endl;
-    cin >> number;
-    return number;
-}
-void printReversedNumbersNto1_UsingFor(int N)
 {
-    cout << "****************************************" << endl;
-    for (int i = N; i >= 1; i--)
-    {
-        cout << i << "\n";
-    }
-    cout << "****************************************" << endl;
-}
-void printReversedNumbersNto1_UsingWhile(int N)
-{
-    cout << "****************************************" << endl;
-    int i = N;
-    while (i >= 1)
-    {
-        cout << i << "\n";
-        i--;
-    }
-    cout << "****************************************" << endl;
-}
-void printReversedNumbersNto1_UsingDoWhile(int N)
-{
-    cout << "****************************************" << endl;
-    int i = N;
+    int number = 0;
     do
     {
-        cout << i << "\n";
-        i--;
-    } while (i >= 1);
+        cout << "enter  number to print " << endl;
+        cin >> N;
+          cout << "enter  number to print " << endl;
+        cin >> N;
+    } while (number <= 0);
 
-    cout << "****************************************" << endl;
-}
-
-enum enOddOrEven
-{
-    Odd = 1,
-    Even = 2
-};
-int ReadNumber()
-{
-
-    int number;
-    cout << "enter Scope of number to print" << endl;
-    cin >> number;
     return number;
 }
-enOddOrEven CheckOddOrEven(int number)
+int calculatePowerOfN(int N, int power)
 {
-    if (number % 2 == 0)
-        return enOddOrEven::Even;
-    else
-        return enOddOrEven ::Odd;
-}
-int sumOddNumbersFrom1toN_UsingFor(int N)
-{
-    int sum = 0;
-
-    for (int i = 1; i <= N; i++)
+    int nPower = 1;
+    for (int i = 1; i <= power; i++)
     {
-        if (CheckOddOrEven(i) == enOddOrEven::Odd)
-        {
-            sum += i;
-        }
+        nPower *= N;
     }
-    return sum;
+    return nPower;
 }
-int sumOddNumbersFrom1toN_UsingWhile(int N)
+void PowerOf2_3_4(int number)
 {
-    int sum = 0;
-    int i = 1;
-    while (i <= N)
-    {
-        if (CheckOddOrEven(i) == enOddOrEven::Odd)
-        {
-            sum += i;
-        }
-    }
-    return sum;
+    cout << "power 2: " << calculatePowerOfN(number, 2) << "\n";
+    cout << "power 3: " << calculatePowerOfN(number, 3) << "\n";
+    cout << "power 4: " << calculatePowerOfN(number, 4) << "\n";
 }
-int sumOddNumbersFrom1toN_UsingDoWhile(int N)
-{
-    int sum = 0;
-    int i = 1;
-    do
-    {
-        if (CheckOddOrEven(i) == enOddOrEven::Odd)
-        {
-            sum += i;
-        }
-    } while (i <= N);
-
-    return sum;
-}
-
 int main()
 {
-    int selectedNumber = ReadNumber();
-    int num = sumOddNumbers(selectedNumber);
-    cout << "Sum of Odd of " << selectedNumber << "Is : " << num;
+    PowerOf2_3_4(ReadNumber());
+    return 0;
 }
