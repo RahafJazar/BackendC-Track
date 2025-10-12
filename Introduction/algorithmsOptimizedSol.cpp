@@ -2,37 +2,52 @@
 #include <cmath>
 using namespace std;
 
-int ReadNumber(int &N ,int M)
-
+enum enOperationType
 {
-    int number = 0;
-    do
-    {
-        cout << "enter  number to print " << endl;
-        cin >> N;
-          cout << "enter  number to print " << endl;
-        cin >> N;
-    } while (number <= 0);
+    Multiplication='*',
+    Subtraction,
+    Additin,
+    Division
+};
 
+float ReadNumber()
+{
+    float number;
+    cout << "Enter Number ? " << "\n";
+    cin >> number;
     return number;
 }
-int calculatePowerOfN(int N, int power)
+enOperationType ReadOpType()
 {
-    int nPower = 1;
-    for (int i = 1; i <= power; i++)
-    {
-        nPower *= N;
-    }
-    return nPower;
+    enOperationType opType;
+    cout << "Enter Operation  to apply into two numbers ? " << "\n";
+    cin >>
 }
-void PowerOf2_3_4(int number)
+float getResultFromOperation(strCalculation calc)
 {
-    cout << "power 2: " << calculatePowerOfN(number, 2) << "\n";
-    cout << "power 3: " << calculatePowerOfN(number, 3) << "\n";
-    cout << "power 4: " << calculatePowerOfN(number, 4) << "\n";
+
+    switch (calc.Operation)
+    {
+    case '*':
+        return calc.Number1 * calc.Number2;
+        break;
+    case '-':
+        return calc.Number1 - calc.Number2;
+        break;
+    case '+':
+        return calc.Number1 + calc.Number2;
+        break;
+    case '/':
+        return calc.Number1 / calc.Number2;
+        break;
+        1 default : break;
+    }
 }
 int main()
 {
-    PowerOf2_3_4(ReadNumber());
-    return 0;
+    float number1 = ReadNumber();
+    float number2 = ReadNumber();
+
+    readCalculationInfo(calculation);
+    cout << calculation.Number1 << calculation.Operation << calculation.Number2 << "=" << getResultFromOperation(calculation);
 }
