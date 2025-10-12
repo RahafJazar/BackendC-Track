@@ -2,52 +2,29 @@
 #include <cmath>
 using namespace std;
 
-enum enOperationType
+enum enPrimeNotPrime
 {
-    Multiplication='*',
-    Subtraction,
-    Additin,
-    Division
+    Prime = 1,
+    NotPrime = 2
 };
-
-float ReadNumber()
+float ReadPositiveNumbers(string message)
 {
-    float number;
-    cout << "Enter Number ? " << "\n";
-    cin >> number;
-    return number;
-}
-enOperationType ReadOpType()
-{
-    enOperationType opType;
-    cout << "Enter Operation  to apply into two numbers ? " << "\n";
-    cin >>
-}
-float getResultFromOperation(strCalculation calc)
-{
-
-    switch (calc.Operation)
+    float num;
+    do
     {
-    case '*':
-        return calc.Number1 * calc.Number2;
-        break;
-    case '-':
-        return calc.Number1 - calc.Number2;
-        break;
-    case '+':
-        return calc.Number1 + calc.Number2;
-        break;
-    case '/':
-        return calc.Number1 / calc.Number2;
-        break;
-        1 default : break;
-    }
+
+        cout << message << endl;
+        cin >> num;
+        return num;
+    } while (num <= 0);
+}
+enPrimeNotPrime checkPrime(int number)
+{
+    
 }
 int main()
 {
-    float number1 = ReadNumber();
-    float number2 = ReadNumber();
 
-    readCalculationInfo(calculation);
-    cout << calculation.Number1 << calculation.Operation << calculation.Number2 << "=" << getResultFromOperation(calculation);
+    float result = sumNmbers();
+    cout << "Result is : " << result;
 }
