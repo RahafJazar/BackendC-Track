@@ -1,61 +1,47 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-enum enDaysOfWeek
+string ReadPinCode()
 {
-    Sun = 1,
-    Mon,
-    Tue,
-    Wed,
-    Thu,
-    Fri,
-    Sat
-};
-int ReadNumberInRange(string message, int from, int to)
+    string pin;
+
+    cout << "\nEnter Pin Code\n"
+         << endl;
+    cin >> pin;
+
+    return pin;
+}
+
+bool Login()
 {
-    int num;
+    string PinCode;
+    int count = 3;
     do
     {
-        cout << message << endl;
-        cin >> num;
+        count--;
+        PinCode = ReadPinCode();
+        if (PinCode == "1234")
+        {
+            return 1;
+        }
+        else
+        {
 
-    } while (num < from || num > to);
-    return num;
+            cout << "\nWrong PIN ,";
+            cout << "You have" << count << " more  trials \n";
+            system("color 4F"); // turn screen to red
+        }
+    } while (PinCode != "1234" && count >= 1);
 }
-enDaysOfWeek ReadDayOfWeek()
-{
-    return (enDaysOfWeek)ReadNumberInRange("please enter day number sun=1,mon=2,...,sat=7", 1, 7);
-}
-string GetDayOfWeek(enDaysOfWeek daysOfWeek)
-{
-    switch (daysOfWeek)
-    {
-    case enDaysOfWeek::Sun:
-        return "Sunday";
-        break;
-    case enDaysOfWeek::Mon:
-        return "Monday";
-        break;
-    case enDaysOfWeek::Tue:
-        return "Tuesday";
-        break;
-    case enDaysOfWeek::Wed:
-        return "Wednesday";
-        break;
-    case enDaysOfWeek::Thu:
-        return "Thursday";
-        break;
-    case enDaysOfWeek::Fri:
-        return "Friday";
-        break;
-    case enDaysOfWeek::Sat:
-        return "Saturday";
-        break;
-    }
-}
-
 int main()
 {
-    string day = GetDayOfWeek(ReadDayOfWeek());
-    cout << "day is  : " << day << endl;
+    if (Login())
+    {
+        system("color 2F"); // turn screen to green
+        cout << "\nYour Count Balance Is " << 7500 << endl;
+    }
+    else
+    {
+        cout << "\nYour Card blocked call the bank for help . \n";
+    }
 }
