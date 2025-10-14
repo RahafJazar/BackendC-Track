@@ -1,47 +1,42 @@
-#include <iostream>
-#include <cmath>
-using namespace std;
-string ReadPinCode()
-{
-    string pin;
+// #include <iostream>
+// #include <cmath>
+// using namespace std;
 
-    cout << "\nEnter Pin Code\n"
-         << endl;
-    cin >> pin;
+// int ReadPositiveNumbers(string message)
+// {
+//     int num;
+//     do
+//     {
+//         cout << message << endl;
+//         cin >> num;
 
-    return pin;
-}
+//     } while (num <= 0);
+//     return num;
+// }
 
-bool Login()
-{
-    string PinCode;
-    int count = 3;
-    do
-    {
-        count--;
-        PinCode = ReadPinCode();
-        if (PinCode == "1234")
-        {
-            return 1;
-        }
-        else
-        {
+// bool isPerfectnumber(int number)
+// {
+//     int middle = number / 2;
+//     int sumOfDivisors = 0;
+//     for (int i = 1; i <= middle; i++)
+//     {
+//         if(number%i)
+//     }
+// }
+// void PrintPrimeNumbersFrom1ToN(int N)
+// {
 
-            cout << "\nWrong PIN ,";
-            cout << "You have" << count << " more  trials \n";
-            system("color 4F"); // turn screen to red
-        }
-    } while (PinCode != "1234" && count >= 1);
-}
-int main()
-{
-    if (Login())
-    {
-        system("color 2F"); // turn screen to green
-        cout << "\nYour Count Balance Is " << 7500 << endl;
-    }
-    else
-    {
-        cout << "\nYour Card blocked call the bank for help . \n";
-    }
-}
+//     cout << "\nOutput is :\n";
+//     for (int i = 1; i <= N; i++)
+//     {
+//         if (checkPrime(i) == enPrimeNotPrime::Prime)
+//         {
+//             cout << i << "\n";
+//         }
+//     }
+// }
+// int main()
+// {
+
+//     PrintPrimeNumbersFrom1ToN(ReadPositiveNumbers("please enter a positive number"));
+// }
