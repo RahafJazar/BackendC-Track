@@ -1,42 +1,34 @@
-// #include <iostream>
-// #include <cmath>
-// using namespace std;
+#include <iostream>
+#include <cmath>
+using namespace std;
 
-// int ReadPositiveNumbers(string message)
-// {
-//     int num;
-//     do
-//     {
-//         cout << message << endl;
-//         cin >> num;
+int ReadPositiveNumbers(string message)
+{
+    int num;
+    do
+    {
+        cout << message << endl;
+        cin >> num;
 
-//     } while (num <= 0);
-//     return num;
-// }
+    } while (num <= 0);
+    return num;
+}
+int SumOfDigits(int number)
+{
 
-// bool isPerfectnumber(int number)
-// {
-//     int middle = number / 2;
-//     int sumOfDivisors = 0;
-//     for (int i = 1; i <= middle; i++)
-//     {
-//         if(number%i)
-//     }
-// }
-// void PrintPrimeNumbersFrom1ToN(int N)
-// {
+    int reminder = 0, sum = 0;
+    do
+    {
+        reminder = number % 10;
+        sum += reminder;
+        number = number / 10;
+    } while (number > 0);
 
-//     cout << "\nOutput is :\n";
-//     for (int i = 1; i <= N; i++)
-//     {
-//         if (checkPrime(i) == enPrimeNotPrime::Prime)
-//         {
-//             cout << i << "\n";
-//         }
-//     }
-// }
-// int main()
-// {
+    return sum;
+}
 
-//     PrintPrimeNumbersFrom1ToN(ReadPositiveNumbers("please enter a positive number"));
-// }
+int main()
+{
+    int sumOfDigits = SumOfDigits(ReadPositiveNumbers("Enter a positive number :"));
+    cout << "Sum OF Digits is : " << sumOfDigits;
+}
