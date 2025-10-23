@@ -11,7 +11,7 @@
       "environment": [],
       "externalConsole": false,
       "MIMode": "gdb",
-      "miDebuggerPath": "D:\\msys64\\ucrt64\\bin\\gdb.exe",
+      "miDebuggerPath": "C:\\msys64\\ucrt64\\bin\\gdb.exe",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",
@@ -58,8 +58,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "D:/BackendC-Track/Introduction",
-      "program": "D:/BackendC-Track/Introduction/build/Debug/outDebug",
+      "cwd": "C:/Users/User/BackendC-Track/Introduction",
+      "program": "C:/Users/User/BackendC-Track/Introduction/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
