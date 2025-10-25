@@ -2,36 +2,38 @@
 #include <string>
 
 using namespace std;
-struct strInfo
+
+int ReadPositiveNumber(string message)
 {
-    string FirstName;
-    string LastName;
-    int Age;
-    string phone;
-};
-void readInfo(strInfo &info)
-{
-    cout << "Enter Your first name : ";
-    getline(cin, info.FirstName);
-    cout << "Enter Your last name : ";
-    getline(cin, info.LastName);
-    cout << "Enter Your  age : ";
-    cin >> info.Age;
-    cin.ignore(0, '\n');
-    cout << "Enter  Tour phone : ";
-    cin >> info.phone;
+    int number;
+    do
+    {
+        cout << message << endl;
+        cin >> number;
+    } while (number < 0);
+
+    return number;
 }
-void printInfo(strInfo info)
+int CountDigitFrequency(short digit, int number)
 {
-    cout << "**************************************************" << endl;
-    cout << "Name " << info.FirstName << " " << info.LastName << "\n";
-    cout << "Age :" << info.Age << "\n";
-    cout << "Phone" << info.phone << "\n";
-    cout << "**************************************************" << endl;
+    // index  على ال forloop لانه رقم ما بتقدري تعملي
+
+    int freqCount = 0, reminder = 0;
+    while (number != 0)
+    {
+        reminder = number % 10; //extract the last digit of the nnumber
+        number = number / 10; //remove the last digit from the number
+        if (reminder == digit)
+        {
+            freqCount++;
+        }
+    }
+    return freqCount;
 }
 int main()
 {
-    strInfo PersonInfo;
-    readInfo(PersonInfo);
-    printInfo(PersonInfo);
+
+    int number = ReadPositiveNumber("please enter positive number");
+    short digitToCheck = ReadPositiveNumber("enter  one digit to check");
+    cout << "\n Digit  " << digitToCheck << " Frequency is  " << CountDigitFrequency(digitToCheck, number) << " Times(s) . \n";
 }
