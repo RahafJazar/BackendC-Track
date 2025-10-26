@@ -14,26 +14,41 @@ int ReadPositiveNumber(string message)
 
     return number;
 }
-int CountDigitFrequency(short digit, int number)
+int DivideTwoNumbers(int dividend, int divisor)
 {
-    // index  على ال forloop لانه رقم ما بتقدري تعملي
+    return (dividend / divisor);
+}
+int ModulusTwoNumbers(int dividend, int divisor)
+{
+    return (dividend % divisor);
+}
+int ReversedOfNumber(int number)
+{
+    int modulus = 0;
 
-    int freqCount = 0, reminder = 0;
+    int revversed = 0;
     while (number != 0)
     {
-        reminder = number % 10; //extract the last digit of the nnumber
-        number = number / 10; //remove the last digit from the number
-        if (reminder == digit)
-        {
-            freqCount++;
-        }
+        modulus = ModulusTwoNumbers(number, 10);
+        revversed = (revversed * 10) + modulus;
+        number = DivideTwoNumbers(number, 10);
     }
-    return freqCount;
+    return revversed;
+}
+
+void PrintDigits(int number)
+{
+    while (number > 0)
+    {
+        int reminder = ModulusTwoNumbers(number, 10);
+        number = DivideTwoNumbers(number, 10);
+        cout << reminder << endl;
+    }
 }
 int main()
 {
 
     int number = ReadPositiveNumber("please enter positive number");
-    short digitToCheck = ReadPositiveNumber("enter  one digit to check");
-    cout << "\n Digit  " << digitToCheck << " Frequency is  " << CountDigitFrequency(digitToCheck, number) << " Times(s) . \n";
+    int n = ReversedOfNumber(number);
+    PrintDigits(n);
 }
