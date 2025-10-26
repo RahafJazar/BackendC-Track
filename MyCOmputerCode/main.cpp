@@ -14,41 +14,21 @@ int ReadPositiveNumber(string message)
 
     return number;
 }
-int DivideTwoNumbers(int dividend, int divisor)
+void PrintInvertedLetterPatern(int number)
 {
-    return (dividend / divisor);
-}
-int ModulusTwoNumbers(int dividend, int divisor)
-{
-    return (dividend % divisor);
-}
-int ReversedOfNumber(int number)
-{
-    int modulus = 0;
-
-    int revversed = 0;
-    while (number != 0)
+    for (int row = 65 + number -1 ; row >= 65; row--)
     {
-        modulus = ModulusTwoNumbers(number, 10);
-        revversed = (revversed * 10) + modulus;
-        number = DivideTwoNumbers(number, 10);
-    }
-    return revversed;
-}
-
-void PrintDigits(int number)
-{
-    while (number > 0)
-    {
-        int reminder = ModulusTwoNumbers(number, 10);
-        number = DivideTwoNumbers(number, 10);
-        cout << reminder << endl;
+        for (int column =1 ; column  <= number - (65+number -1 -row); column++)
+        {
+            cout << char(row) << " ";
+        }
+        cout << endl;
+       
     }
 }
 int main()
 {
 
     int number = ReadPositiveNumber("please enter positive number");
-    int n = ReversedOfNumber(number);
-    PrintDigits(n);
+    PrintInvertedLetterPatern(number);
 }
