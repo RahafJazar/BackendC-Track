@@ -16,14 +16,13 @@ int ReadPositiveNumber(string message)
 }
 void PrintInvertedLetterPatern(int number)
 {
-    for (int row = 65 + number -1 ; row >= 65; row--)
+    for (int row = 65; row <= 65 + number - 1; row++)
     {
-        for (int column =1 ; column  <= number - (65+number -1 -row); column++)
+        for (int column = 1; column <= row - 65 + 1; column++)
         {
             cout << char(row) << " ";
         }
         cout << endl;
-       
     }
 }
 int main()
