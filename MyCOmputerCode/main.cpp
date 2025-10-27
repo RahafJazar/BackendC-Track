@@ -1,33 +1,18 @@
 #include <iostream>
 #include <string>
+#include <cstdLib>
 
 using namespace std;
 
-int ReadPositiveNumber(string message)
+int RandomNumber(int from, int to)
 {
-    int number;
-    do
-    {
-        cout << message << endl;
-        cin >> number;
-    } while (number < 0);
+    // rand -> from 0 to max
+    return rand() % (to - from + 1) + from;
+}
 
-    return number;
-}
-void PrintInvertedLetterPatern(int number)
-{
-    for (int row = 65; row <= 65 + number - 1; row++)
-    {
-        for (int column = 1; column <= row - 65 + 1; column++)
-        {
-            cout << char(row) << " ";
-        }
-        cout << endl;
-    }
-}
 int main()
 {
-
-    int number = ReadPositiveNumber("please enter positive number");
-    PrintInvertedLetterPatern(number);
+    srand((unsigned)time(NULL));
+    cout <<RandomNumber(1,5)<<endl;
+    cout <<RandomNumber(1,5)<<endl;
 }

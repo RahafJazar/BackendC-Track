@@ -58,8 +58,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "C:/Users/User/BackendC-Track/Introduction",
-      "program": "C:/Users/User/BackendC-Track/Introduction/build/Debug/outDebug",
+      "cwd": "D:/BackendC-Track/OptimumPartnersInterviewQuestions",
+      "program": "D:/BackendC-Track/OptimumPartnersInterviewQuestions/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
