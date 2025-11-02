@@ -70,7 +70,7 @@ int main()
 
     bool isfound = IsNumberInArray(arr1, arrLength, number);
 
-    if (isfound == false)
+    if (!isfound)
     {
         cout << "\nThe Number is not found :-( \n";
     }
