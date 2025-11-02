@@ -1,10 +1,10 @@
 #include <iostream>
 #include <string>
 #include <cstdLib>
+#include <cmath>
 
 using namespace std;
-
-int ReadNumber(string msg)
+int ReadPositiveNumber(string msg)
 {
     int n;
     cout << msg << endl;
@@ -12,48 +12,50 @@ int ReadNumber(string msg)
     return n;
 }
 
-void ReadArray(int arr[100], int &lengthOfArr)
+int RandomNumber(int from, int to)
 {
+    // rand -> from 0 to max
+    return rand() % (to - from + 1) + from;
+}
 
-    lengthOfArr = ReadNumber("Enter Number Of elements");
-    for (int i = 0; i < lengthOfArr; i++)
+void FillArrayWithRandomNumbers(int arr[100], int sizeOfArr)
+{
+    
+    for (int i = 0; i < sizeOfArr; i++)
     {
-
-        cout << "Element [" << i + 1 << "] : ";
-        cin >> arr[i];
+        arr[i] = RandomNumber(1, 100);
     }
 }
-void PrintArr(int arr[100], int &lengthOfArr)
+void PrintArray(int arr[100], int sizeOfArr)
 {
-    for (int i = 0; i < lengthOfArr; i++)
+    for (int i = 0; i < sizeOfArr; i++)
     {
         cout << arr[i] << " ";
     }
-    cout << endl;
-}
-int TimesRepeated(int number, int lenthOfArray, int arr[100])
-{
-    int count = 0;
-    for (int i = 0; i < lenthOfArray; i++)
-    {
-        if (arr[i] == number)
-        {
-            count++;
-        }
-    }
-    return count;
 }
 
+void SumOf2Arrays(int arr1[100], int arr2[100], int arrSum[100], int arrLength)
+{
+    for (int i = 0; i < arrLength; i++)
+    {
+        arrSum[i] = arr1[i] + arr2[i];
+    }
+}
 int main()
 {
-    int arr[100], numToCheck, numOfElements;
+    srand((unsigned)time(NULL));
+    int arr1[100], arr2[100], sumArr[100], arrLength;
+    arrLength = ReadPositiveNumber("Enter Size of Array ");
+    FillArrayWithRandomNumbers(arr1, arrLength);
+    FillArrayWithRandomNumbers(arr2, arrLength);
+    cout << "\nArray1 Elements : ";
+    PrintArray(arr1, arrLength);
 
-    ReadArray(arr, numOfElements);
+    cout << "\nArray2 Elements : ";
+    PrintArray(arr2, arrLength);
 
-    cout << "Original Array  : ";
-    PrintArr(arr, numOfElements);
+    SumOf2Arrays(arr1, arr2, sumArr, arrLength);
 
-    numToCheck = ReadNumber("Enter the number to check ");
-
-    cout << "Number " << numToCheck << " is repeaed " << TimesRepeated(numToCheck, numOfElements, arr) << " time(s) \n";
+    cout << "\nSum Of array1 and array2 elements : ";
+    PrintArray(sumArr, arrLength);
 }
