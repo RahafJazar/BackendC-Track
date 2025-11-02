@@ -4,6 +4,7 @@
 #include <cmath>
 
 using namespace std;
+
 int ReadPositiveNumber(string msg)
 {
     int n;
@@ -20,12 +21,13 @@ int RandomNumber(int from, int to)
 
 void FillArrayWithRandomNumbers(int arr[100], int sizeOfArr)
 {
-    
+
     for (int i = 0; i < sizeOfArr; i++)
     {
         arr[i] = RandomNumber(1, 100);
     }
 }
+
 void PrintArray(int arr[100], int sizeOfArr)
 {
     for (int i = 0; i < sizeOfArr; i++)
@@ -34,28 +36,46 @@ void PrintArray(int arr[100], int sizeOfArr)
     }
 }
 
-void SumOf2Arrays(int arr1[100], int arr2[100], int arrSum[100], int arrLength)
+int FindNumberPositionInArray(int arr[100], int sizeOfArr, int searchNum)
 {
-    for (int i = 0; i < arrLength; i++)
+
+    for (int i = 0; i < sizeOfArr; i++)
     {
-        arrSum[i] = arr1[i] + arr2[i];
+        if (arr[i] == searchNum)
+        {
+
+            return i;
+        }
     }
+    return -1;
+}
+bool IsNumberInArray(int arr[100], int sizeOfArr, int searchNum)
+{
+    return FindNumberPositionInArray(arr, sizeOfArr, searchNum) != -1;
 }
 int main()
 {
     srand((unsigned)time(NULL));
-    int arr1[100], arr2[100], sumArr[100], arrLength;
-    arrLength = ReadPositiveNumber("Enter Size of Array ");
+    int arr1[100];
+    int arrLength;
+    arrLength = ReadPositiveNumber("\nEnter Size of Array ");
+
+    cout << "\nArray   Elements  : ";
+
     FillArrayWithRandomNumbers(arr1, arrLength);
-    FillArrayWithRandomNumbers(arr2, arrLength);
-    cout << "\nArray1 Elements : ";
     PrintArray(arr1, arrLength);
 
-    cout << "\nArray2 Elements : ";
-    PrintArray(arr2, arrLength);
+    int number = ReadPositiveNumber("\nPlease Enter a number to search For ");
+    cout << "\nNumber You are looking  for is : " << number << endl;
 
-    SumOf2Arrays(arr1, arr2, sumArr, arrLength);
+    bool isfound = IsNumberInArray(arr1, arrLength, number);
 
-    cout << "\nSum Of array1 and array2 elements : ";
-    PrintArray(sumArr, arrLength);
+    if (isfound == false)
+    {
+        cout << "\nThe Number is not found :-( \n";
+    }
+    else
+    {
+        cout << "\nYes ,The Number is  found :-) \n";
+    }
 }
