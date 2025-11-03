@@ -13,21 +13,15 @@ int ReadPositiveNumber(string msg)
     return n;
 }
 
-int RandomNumber(int from, int to)
+void FillArray(int arr[100], int &arrLength)
 {
-    // rand -> from 0 to max
-    return rand() % (to - from + 1) + from;
-}
-
-void FillArrayWithRandomNumbers(int arr[100], int sizeOfArr)
-{
-
-    for (int i = 0; i < sizeOfArr; i++)
+    arrLength = ReadPositiveNumber("Enter Number of array length");
+    for (int i = 0; i < arrLength; i++)
     {
-        arr[i] = RandomNumber(1, 100);
+        arr[i] = ReadPositiveNumber("Enter a number ?");
     }
 }
-
+ 
 void PrintArray(int arr[100], int sizeOfArr)
 {
     for (int i = 0; i < sizeOfArr; i++)
@@ -36,46 +30,21 @@ void PrintArray(int arr[100], int sizeOfArr)
     }
 }
 
-int FindNumberPositionInArray(int arr[100], int sizeOfArr, int searchNum)
-{
-
-    for (int i = 0; i < sizeOfArr; i++)
-    {
-        if (arr[i] == searchNum)
-        {
-
-            return i;
-        }
-    }
-    return -1;
+bool IsPalindromeArray(int arr[100], int sizeOfArr){
+    
 }
-bool IsNumberInArray(int arr[100], int sizeOfArr, int searchNum)
-{
-    return FindNumberPositionInArray(arr, sizeOfArr, searchNum) != -1;
-}
+
 int main()
 {
     srand((unsigned)time(NULL));
-    int arr1[100];
-    int arrLength;
-    arrLength = ReadPositiveNumber("\nEnter Size of Array ");
+    int arr1[100], arr2[100], arr1Length = 0, arr2Length = 0;
 
-    cout << "\nArray   Elements  : ";
+    FillArray(arr1, arr1Length);
+    cout << "\nArray1 Elements : ";
+    PrintArray(arr1, arr1Length);
 
-    FillArrayWithRandomNumbers(arr1, arrLength);
-    PrintArray(arr1, arrLength);
+    CopyDistinctNumberToArray(arr1, arr2, arr1Length, arr2Length);
 
-    int number = ReadPositiveNumber("\nPlease Enter a number to search For ");
-    cout << "\nNumber You are looking  for is : " << number << endl;
-
-    bool isfound = IsNumberInArray(arr1, arrLength, number);
-
-    if (!isfound)
-    {
-        cout << "\nThe Number is not found :-( \n";
-    }
-    else
-    {
-        cout << "\nYes ,The Number is  found :-) \n";
-    }
+    cout << "\nArray2 Distinct Element :";
+    PrintArray(arr2, arr2Length);
 }
