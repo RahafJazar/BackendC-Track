@@ -5,29 +5,37 @@
 
 using namespace std;
 
-// أنواع الخيارات الممكنة باللعبة (حجر - ورقة - مقص)
-enum enGameChoices
+enum enQuestionsLevels
 {
-    Stone = 1,
-    Paper = 2,
-    Scissor = 3
+    Easy = 1,
+    Med = 2,
+    Hard = 3,
+    Mix = 4
 };
-// أنواع النتائج الممكنة (فاز اللاعب - فاز الكمبيوتر - تعادل)
-enum enWonChoices
+enum enOperationsTypes
 {
-    Player1 = 1,
-    Computer = 2,
-    NoWinner = 3
+    Add = 1,
+    Sub = 2,
+    Mul = 3,
+    Div = 4,
+    Mix1 = 5
+
+};
+enum enResultStatus
+{
+    Pass = true,
+    fail = false
 };
 
 struct stGameInfo
 {
-    int Round;
-    int Plalyer1WonTimes;
-    int ComputerWonTimes;
-    int DrawTimes;
+    int num1;
+    int num2;
+    int myAnswer;
+    int correctAnswer;
+    int numOfCorrectAnswers;
+    int numOfWrongAnswers;
 };
-// دالة لقراءة عدد موجب فقط من المستخدم
 int ReadPositiveNumbers(string message)
 {
     int num;
@@ -39,178 +47,187 @@ int ReadPositiveNumbers(string message)
     } while (num <= 0);
     return num;
 }
-int ReadPlayerChoice() {
-    int choice;
-    do {
-        cout << "Your Choice [1]: Stone, [2]: Paper, [3]: Scissor ? ";
-        cin >> choice;
-    } while (choice < 1 || choice > 3);
-    return choice;
-}
 // دالة لتوليد رقم عشوائي ضمن مجال معين
 int RandomNumber(int from, int to)
 {
     // rand -> from 0 to max
     return rand() % (to - from + 1) + from;
 }
-// ترجمة الأرقام إلى أسماء الخيارات (مثلاً 1 = Stone)
-string GetGameChoices(int number)
+enQuestionsLevels GetQuestionsLevel(int number)
 {
     switch (number)
     {
-    case enGameChoices::Stone:
-        return "Stone";
+    case enQuestionsLevels::Easy:
+        return enQuestionsLevels::Easy;
         break;
-    case enGameChoices::Paper:
-        return "Paper";
+    case enQuestionsLevels::Med:
+        return enQuestionsLevels::Med;
         break;
-    case enGameChoices::Scissor:
-        return "Scissor";
+    case enQuestionsLevels::Hard:
+        return enQuestionsLevels::Hard;
         break;
-
-    default:
-        return "Unknown";
-        break;
-    }
-}
-// تحديد الفائز في كل جولة وزيادة عدد مرات الفوز أو التعادل
-enWonChoices GetRoundWinner(int palyerChoice, int ComputerChoice, stGameInfo &gameInfoStruc)
-{
-    // الفائز هو الجهاز
-    if ((palyerChoice == enGameChoices::Paper && ComputerChoice == enGameChoices::Scissor) ||
-        (palyerChoice == enGameChoices::Stone && ComputerChoice == enGameChoices::Paper) ||
-        (palyerChoice == enGameChoices::Scissor && ComputerChoice == enGameChoices::Stone))
-    {
-        gameInfoStruc.ComputerWonTimes++;
-        return enWonChoices::Computer;
-    }
-
-    // الفائز هو اللاعب
-    else if ((palyerChoice == enGameChoices::Scissor && ComputerChoice == enGameChoices::Paper) ||
-             (palyerChoice == enGameChoices::Paper && ComputerChoice == enGameChoices::Stone) ||
-             (palyerChoice == enGameChoices::Stone && ComputerChoice == enGameChoices::Scissor))
-    {
-        gameInfoStruc.Plalyer1WonTimes++;
-        return enWonChoices::Player1;
-    }
-
-    // لا يوجد فائز
-    else
-    {
-        gameInfoStruc.DrawTimes++;
-        return enWonChoices::NoWinner;
-    }
-}
-// تحويل نتيجة الفائز إلى نص لعرضها
-string ShowWinnerInString(enWonChoices winner)
-{
-    switch (winner)
-    {
-    case enWonChoices::Player1:
-        return "Player1";
-        break;
-    case enWonChoices::Computer:
-        return "Computer";
-        break;
-    case enWonChoices::NoWinner:
-        return "No Winner";
+    case enQuestionsLevels::Mix:
+        return enQuestionsLevels::Mix;
         break;
 
     default:
-        return "Unknown";
+        break;
+    }
+}
+enOperationsTypes GetOperationType(int number)
+{
+    switch (number)
+    {
+    case enOperationsTypes::Add:
+        return enOperationsTypes::Add;
+        break;
+    case enOperationsTypes::Sub:
+        return enOperationsTypes::Sub;
+        break;
+    case enOperationsTypes::Mul:
+        return enOperationsTypes::Mul;
+        break;
+    case enOperationsTypes::Div:
+        return enOperationsTypes::Div;
+        break;
+    case enOperationsTypes::Mix1:
+        return enOperationsTypes::Mix1;
+        break;
+
+    default:
+        break;
+    }
+}
+//
+string printOperationSign(enOperationsTypes operationType)
+{
+    switch (operationType)
+    {
+    case enOperationsTypes::Add:
+        return "+";
+        break;
+    case enOperationsTypes::Sub:
+        return "-";
+        break;
+    case enOperationsTypes::Mul:
+        return "*";
+        break;
+    case enOperationsTypes::Div:
+        return "/";
+        break;
+    default:
+        break;
+    }
+}
+int CalculateOperations(stGameInfo gameInfo, enOperationsTypes operationType)
+{
+    switch (operationType)
+    {
+    case enOperationsTypes::Add:
+        return gameInfo.num1 + gameInfo.num2;
+        break;
+    case enOperationsTypes::Sub:
+        return gameInfo.num1 - gameInfo.num2;
+        break;
+    case enOperationsTypes::Mul:
+        return gameInfo.num1 * gameInfo.num2;
+        break;
+    case enOperationsTypes::Div:
+        return gameInfo.num1 / gameInfo.num2;
+        break;
+    default:
+        return 0;
+        break;
+    }
+}
+int ReturnRandomNumbersDependOnLevels(enQuestionsLevels QuestionLevel)
+{
+    switch (QuestionLevel)
+    {
+    case enQuestionsLevels::Easy:
+        return RandomNumber(1, 10);
+        break;
+    case enQuestionsLevels::Med:
+        return RandomNumber(11, 99);
+        break;
+    case enQuestionsLevels::Hard:
+        return RandomNumber(100, 999);
+        break;
+    default:
+        return 0;
         break;
     }
 }
 
-// تغيير لون الشاشة حسب الفائز (ميزة شكلية)
-void ColorTerminal(enWonChoices winner)
+bool AnswerStatus(int correctAnswer, int myAnswer)
 {
-    if (winner == enWonChoices::Computer)
-    {
-        system("color 4F"); // أحمر عند فوز الكمبيوتر
-    }
-    else if (winner == enWonChoices::Player1)
-    {
-        system("color 2F"); // أخضر عند فوز اللاعب
-    }
-    else if (winner == enWonChoices::NoWinner)
-    {
-        system("color 6F"); // أصفر عند التعادل
-    }
+    return correctAnswer == myAnswer;
 }
-
-// دالة تشغيل جولات اللعبة
-void StartGame(int &palyerChoice, int &computerChoice, stGameInfo &gameInfoStruc)
+string ShowAnswerStatus(bool answeStatus, int correctAnswer)
 {
-    gameInfoStruc.Round = ReadPositiveNumbers("\n\nHow Many Rounds 1 to 10 ? ");
-    for (int i = 1; i <= gameInfoStruc.Round; i++)
+    if (answeStatus)
     {
-        cout << "\nRound [" << i << "] begins:" << endl;
-        // قراءة اختيار اللاعب
-        palyerChoice = ReadPlayerChoice();
-        // اختيار عشوائي للكمبيوتر
-        computerChoice = RandomNumber(1, 3);
-        // تحديد من فاز في هذه الجولة
-        cout << "_________________________Round [ " << i << "]______________________";
-        cout << "\nPlayer1 choice : " << GetGameChoices(palyerChoice);
-        cout << "\nComputer choice : " << GetGameChoices(computerChoice);
-        enWonChoices winner = GetRoundWinner(palyerChoice, computerChoice, gameInfoStruc);
-        cout << "\nRound   Winner : " << "[" << ShowWinnerInString(winner) << "] ";
-        cout << "\n______________________________________________________________";
-
-        ColorTerminal(winner);
+        system("color 2f");
+        return "Right Answer :-)";
     }
-}
-// تحديد من الفائز النهائي بناءً على عدد مرات الفوز
-enWonChoices GetGameWinner(stGameInfo gameInfoStruc)
-{
-    if (gameInfoStruc.Plalyer1WonTimes > gameInfoStruc.ComputerWonTimes && gameInfoStruc.Plalyer1WonTimes >= gameInfoStruc.DrawTimes)
-        return enWonChoices::Player1;
-    else if (gameInfoStruc.ComputerWonTimes > gameInfoStruc.Plalyer1WonTimes && gameInfoStruc.ComputerWonTimes >= gameInfoStruc.DrawTimes)
-        return enWonChoices::Computer;
     else
-        return enWonChoices::NoWinner;
-}
-// إعادة ضبط القيم عند بدء لعبة جديدة
-void ResetVariables(stGameInfo &gameInfoStruc)
-{
-    gameInfoStruc.Round = 0;
-    gameInfoStruc.Plalyer1WonTimes = 0;
-    gameInfoStruc.ComputerWonTimes = 0;
-    gameInfoStruc.DrawTimes = 0;
-}
-// عرض النتائج النهائية للعبة مع خيار إعادة اللعب
-void ShowResultOfGame(int &palyerChoice, int computerChoice, stGameInfo &gameInfoStruc)
-{
-    char playAgain = 'y';
-    do
     {
-        system("color 0F"); // اللون الافتراضي
-        ResetVariables(gameInfoStruc);
-        // تشغيل اللعبة
-        StartGame(palyerChoice, computerChoice, gameInfoStruc);
-        // تحديد الفائز النهائي
-        string winner = ShowWinnerInString(GetGameWinner(gameInfoStruc));
-        // عرض النتيجة النهائية
-        cout << "\n\n\n\n\n\t-----------------------------------------------                ";
-        cout << "\n\n\t\t+++G a m e  O v e r +++                            ";
-        cout << "\n\n\t-----------------------------------------------                ";
-        cout << "\n\t _______________ [Game Results]_________________                ";
-        cout << "\n\n\tGame Rounds             : " << gameInfoStruc.Round << endl;
-        cout << "\n\n\tPlayer1 Won times       : " << gameInfoStruc.Plalyer1WonTimes << endl;
-        cout << "\n\n\tComputer won times      : " << gameInfoStruc.ComputerWonTimes << endl;
-        cout << "\n\n\tDraw times              : " << gameInfoStruc.DrawTimes << endl;
-        cout << "\n\n\tFinal Winner            : " << winner << endl;
-        cout << "\n\n\t-----------------------------------------------                ";
-        cout << "\n\n\tDo You want to play again ?Y/N?"; // سؤال المستخدم إن كان يريد إعادة اللعب
-        cin >> playAgain;
+        system("color 4f");
+        return "Wrong Answer:-( \nThe right answer is : " + to_string(correctAnswer);
+    }
+}
+bool RoundAnswersStatus(stGameInfo gameInfo)
+{
+    return gameInfo.numOfCorrectAnswers >= gameInfo.numOfWrongAnswers;
+}
+string RoundAnswerStatusInString(bool roundAnswerStatus)
+{
+    return (roundAnswerStatus) ? "PASS" : "FAIL";
+}
 
-    } while (playAgain == 'Y' || playAgain == 'y');
+void CalculatenumOfCorrectAndWrongAnswersInRound(bool answerStatus, stGameInfo &gameInfo)
+{
+    if (answerStatus)
+    {
+        gameInfo.numOfCorrectAnswers++;
+    }
+    else
+    {
+        gameInfo.numOfWrongAnswers++;
+    }
+}
+
+void ShowQuestionShape(int questionNumber, int numOfQuestions, stGameInfo gameInfo, enOperationsTypes OP)
+{
+    cout << "\nQuestion [" << questionNumber << "/" << numOfQuestions << "]" << endl;
+    cout << "\n\n";
+    cout << gameInfo.num1 << endl;
+    cout << gameInfo.num2 << " " << printOperationSign(OP) << endl;
+    cout << "\n________________________" << endl;
+}
+
+void StartGame(stGameInfo &gameInfo)
+{
+    int numOfQuestions = ReadPositiveNumbers("How Many Questions do you want to answer ?");
+    int questionLevel = ReadPositiveNumbers("Enter Questions Level [1] Easy. ,[2] Med. ,[3] Hard. ,[4] Mix ?");
+    int operationType = ReadPositiveNumbers("Enter Operation Type  [1] Add. ,[2] Sub. ,[3] Mul. ,[4] Div. [5] Mix ?");
+
+    for (int i = 1; i <= numOfQuestions; i++)
+    {
+        gameInfo.num1 = ReturnRandomNumbersDependOnLevels(GetQuestionsLevel(questionLevel));
+        gameInfo.num2 = ReturnRandomNumbersDependOnLevels(GetQuestionsLevel(questionLevel));
+        ShowQuestionShape(i, numOfQuestions, gameInfo, GetOperationType(operationType));
+        cin >> gameInfo.myAnswer;
+        gameInfo.correctAnswer = CalculateOperations(gameInfo, GetOperationType(operationType));
+        bool answerStatus = AnswerStatus(gameInfo.correctAnswer, gameInfo.myAnswer);
+        cout << ShowAnswerStatus(answerStatus, gameInfo.correctAnswer) << endl;
+        CalculatenumOfCorrectAndWrongAnswersInRound(answerStatus, gameInfo);
+        cout << "\n\n\n\n";
+    }
 }
 int main()
 {
     srand((unsigned)time(NULL));
     stGameInfo gameInfo;
-    int playerchoice = 0, computerChoice = 0;
-    ShowResultOfGame(playerchoice, computerChoice, gameInfo);
+    StartGame(gameInfo);
 }
