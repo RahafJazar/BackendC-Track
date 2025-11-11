@@ -32,10 +32,22 @@ struct stGameInfo
     int num1;
     int num2;
     int myAnswer;
+    int numOfQuestions;
     int correctAnswer;
     int numOfCorrectAnswers;
     int numOfWrongAnswers;
+    enQuestionsLevels questionLevel;
+    enOperationsTypes optype;
 };
+void ResetGame(stGameInfo &gameInfo)
+{
+    gameInfo.num1 = 0;
+    gameInfo.num2 = 0;
+    gameInfo.myAnswer = 0;
+    gameInfo.correctAnswer = 0;
+    gameInfo.numOfCorrectAnswers = 0;
+    gameInfo.numOfWrongAnswers = 0;
+}
 int ReadPositiveNumbers(string message)
 {
     int num;
@@ -99,6 +111,29 @@ enOperationsTypes GetOperationType(int number)
     }
 }
 //
+string returnOperationAsString(enOperationsTypes operationType)
+{
+    switch (operationType)
+    {
+    case enOperationsTypes::Add:
+        return "Add";
+        break;
+    case enOperationsTypes::Sub:
+        return "Sub";
+        break;
+    case enOperationsTypes::Mul:
+        return "Mul";
+        break;
+    case enOperationsTypes::Div:
+        return "Div";
+        break;
+    case enOperationsTypes::Mix1:
+        return "Mix";
+        break;
+    default:
+        break;
+    }
+}
 string printOperationSign(enOperationsTypes operationType)
 {
     switch (operationType)
@@ -119,8 +154,29 @@ string printOperationSign(enOperationsTypes operationType)
         break;
     }
 }
+string returnQuestionLevelAsString(enQuestionsLevels questionsLevel)
+{
+    switch (questionsLevel)
+    {
+    case enQuestionsLevels::Easy:
+        return "Easy";
+        break;
+    case enQuestionsLevels::Med:
+        return "Med";
+        break;
+    case enQuestionsLevels::Hard:
+        return "Hard";
+        break;
+    case enQuestionsLevels::Mix:
+        return "Mix";
+        break;
+    default:
+        break;
+    }
+}
 int CalculateOperations(stGameInfo gameInfo, enOperationsTypes operationType)
 {
+
     switch (operationType)
     {
     case enOperationsTypes::Add:
@@ -142,6 +198,13 @@ int CalculateOperations(stGameInfo gameInfo, enOperationsTypes operationType)
 }
 int ReturnRandomNumbersDependOnLevels(enQuestionsLevels QuestionLevel)
 {
+    /*💡 ليش نخليها في if مش في switch؟
+  هي مجرد طلب لتوليد عملية عشوائية. */
+    if (QuestionLevel == enQuestionsLevels::Mix)
+    {
+        enQuestionsLevels randomLevel = (enQuestionsLevels)RandomNumber(1, 3);
+        return ReturnRandomNumbersDependOnLevels(randomLevel); //   إعادة استدعاء بالمستوى الجديد
+    }
     switch (QuestionLevel)
     {
     case enQuestionsLevels::Easy:
@@ -168,12 +231,12 @@ string ShowAnswerStatus(bool answeStatus, int correctAnswer)
     if (answeStatus)
     {
         system("color 2f");
-        return "Right Answer :-)";
+        return "\nRight Answer :-)\n";
     }
     else
     {
         system("color 4f");
-        return "Wrong Answer:-( \nThe right answer is : " + to_string(correctAnswer);
+        return "\nWrong Answer:-( \nThe right answer is : " + to_string(correctAnswer) + "\n";
     }
 }
 bool RoundAnswersStatus(stGameInfo gameInfo)
@@ -182,7 +245,7 @@ bool RoundAnswersStatus(stGameInfo gameInfo)
 }
 string RoundAnswerStatusInString(bool roundAnswerStatus)
 {
-    return (roundAnswerStatus) ? "PASS" : "FAIL";
+    return (roundAnswerStatus) ? "Final Result is PASS :-)" : "Final Result is FAIL :-(";
 }
 
 void CalculatenumOfCorrectAndWrongAnswersInRound(bool answerStatus, stGameInfo &gameInfo)
@@ -197,37 +260,76 @@ void CalculatenumOfCorrectAndWrongAnswersInRound(bool answerStatus, stGameInfo &
     }
 }
 
-void ShowQuestionShape(int questionNumber, int numOfQuestions, stGameInfo gameInfo, enOperationsTypes OP)
+void ShowQuestionShape(int &questionNumber, stGameInfo gameInfo, enOperationsTypes OP)
 {
-    cout << "\nQuestion [" << questionNumber << "/" << numOfQuestions << "]" << endl;
+    cout << "\nQuestion [" << questionNumber << "/" << gameInfo.numOfQuestions << "]" << endl;
     cout << "\n\n";
     cout << gameInfo.num1 << endl;
     cout << gameInfo.num2 << " " << printOperationSign(OP) << endl;
-    cout << "\n________________________" << endl;
+    cout << "\n________________________\n"
+         << endl;
 }
 
 void StartGame(stGameInfo &gameInfo)
 {
-    int numOfQuestions = ReadPositiveNumbers("How Many Questions do you want to answer ?");
-    int questionLevel = ReadPositiveNumbers("Enter Questions Level [1] Easy. ,[2] Med. ,[3] Hard. ,[4] Mix ?");
-    int operationType = ReadPositiveNumbers("Enter Operation Type  [1] Add. ,[2] Sub. ,[3] Mul. ,[4] Div. [5] Mix ?");
+    gameInfo.numOfQuestions = ReadPositiveNumbers("How Many Questions do you want to answer ?");
+    gameInfo.questionLevel = GetQuestionsLevel(ReadPositiveNumbers("Enter Questions Level [1] Easy. ,[2] Med. ,[3] Hard. ,[4] Mix ?"));
+    gameInfo.optype = GetOperationType(ReadPositiveNumbers("Enter Operation Type  [1] Add. ,[2] Sub. ,[3] Mul. ,[4] Div. [5] Mix ?"));
 
-    for (int i = 1; i <= numOfQuestions; i++)
+    for (int i = 1; i <= gameInfo.numOfQuestions; i++)
     {
-        gameInfo.num1 = ReturnRandomNumbersDependOnLevels(GetQuestionsLevel(questionLevel));
-        gameInfo.num2 = ReturnRandomNumbersDependOnLevels(GetQuestionsLevel(questionLevel));
-        ShowQuestionShape(i, numOfQuestions, gameInfo, GetOperationType(operationType));
+        // لو المستوى Mix، نختار مستوى واحد عشوائي لهذا السؤال فقط
+        enQuestionsLevels currentLevel = gameInfo.questionLevel;
+        if (gameInfo.questionLevel == enQuestionsLevels::Mix)
+            currentLevel = (enQuestionsLevels)RandomNumber(1, 3);
+        gameInfo.num1 = ReturnRandomNumbersDependOnLevels(currentLevel);
+        gameInfo.num2 = ReturnRandomNumbersDependOnLevels(currentLevel);
+
+        // ✅ لو كانت Mix في العمليات، نختار عملية عشوائية جديدة كل مرة
+        enOperationsTypes currentOp = gameInfo.optype;
+        if (gameInfo.optype == enOperationsTypes::Mix1)
+            currentOp = (enOperationsTypes)RandomNumber(1, 4);
+
+        ShowQuestionShape(i, gameInfo, currentOp);
         cin >> gameInfo.myAnswer;
-        gameInfo.correctAnswer = CalculateOperations(gameInfo, GetOperationType(operationType));
+        gameInfo.correctAnswer = CalculateOperations(gameInfo, gameInfo.optype);
         bool answerStatus = AnswerStatus(gameInfo.correctAnswer, gameInfo.myAnswer);
         cout << ShowAnswerStatus(answerStatus, gameInfo.correctAnswer) << endl;
         CalculatenumOfCorrectAndWrongAnswersInRound(answerStatus, gameInfo);
         cout << "\n\n\n\n";
     }
 }
+
+void ShowResultOfGame(stGameInfo &gameInfo)
+{
+    char playAgain = 'y';
+    do
+    {
+        system("color 0F"); // اللون الافتراضي
+        ResetGame(gameInfo);
+        // تشغيل اللعبة
+        StartGame(gameInfo);
+        string finalResult = RoundAnswerStatusInString(RoundAnswersStatus(gameInfo));
+        // عرض النتيجة النهائية
+        cout << "\n\n-----------------------------------------------                ";
+        cout << "\n\t" << finalResult;
+        cout << "\n-------------------------------------------------                ";
+        cout << "\n\t _______________ [Game Results]_________________                ";
+        cout << "\n\tNumber Of Questions       : " << gameInfo.numOfQuestions << endl;
+        cout << "\n\tQuestions Level           : " << returnQuestionLevelAsString(gameInfo.questionLevel) << endl;
+        cout << "\n\tOperation Type            : " << returnOperationAsString(gameInfo.optype) << endl;
+        cout << "\n\tNumber Of Right Answers   : " << gameInfo.numOfCorrectAnswers << endl;
+        cout << "\n\tNumber Of Wrong Answers   : " << gameInfo.numOfWrongAnswers << endl;
+        cout << "\n-------------------------------------------------                ";
+        cout << "\n\n\tDo You want to play again ?Y/N?"; // سؤال المستخدم إن كان يريد إعادة اللعب
+        cin >> playAgain;
+
+    } while (playAgain == 'Y' || playAgain == 'y');
+}
+
 int main()
 {
     srand((unsigned)time(NULL));
     stGameInfo gameInfo;
-    StartGame(gameInfo);
+    ShowResultOfGame(gameInfo);
 }
