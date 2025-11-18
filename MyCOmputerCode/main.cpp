@@ -5,16 +5,20 @@
 
 #include "HeaderFiles/MyLib.h"
 #include "HeaderFiles/MyInputLib.h"
+#include "HeaderFiles/StudentLib.h"
 
 using namespace MyInputLib;
+
 int main()
 {
     srand((unsigned)time(NULL));
 
-    MyLib::Test();
-    int res = MyLib ::Sum2Numbers(3, 4);
-    cout << "\nSum of 3 and 4 is " << res;
+    // MyLib::Test();
+    // int res = MyLib ::Sum2Numbers(3, 4);
+    // cout << "\nSum of 3 and 4 is " << res;
 
-    int number = ReadNumber();
-    cout << "\nThe Input user entered is " << number;
+    // int number = ReadNumber();
+    // cout << "\nThe Input user entered is " << number;
+
+    cout << "=====Student Management Program =====\n";
 }
