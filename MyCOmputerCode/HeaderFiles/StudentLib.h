@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <limits>
 using namespace std;
 
 namespace StudentLib
@@ -26,11 +27,15 @@ namespace StudentLib
   {
     stStudent studnetInfo;
     cout << "Enter Your Name :" << endl;
-    cin >> studnetInfo.name;
+
+    getline(cin, studnetInfo.name);
     cout << "Enter Your Age :" << endl;
     cin >> studnetInfo.age;
+     cin.ignore();
     cout << "Enter Your Major :" << endl;
-    cin >> studnetInfo.major;
+   
+    getline(cin, studnetInfo.major);
+    return studnetInfo;
   }
 
   stStudent BestStudent(stStudent st1, stStudent st2)
