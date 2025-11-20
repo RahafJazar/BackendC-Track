@@ -9,25 +9,27 @@
 #include "HeaderFiles/MathLib.h"
 
 using namespace MyInputLib;
-int ReadNumber()
+
+int MySum(int a, int b)
 {
-    int number;
-    cout << "Enter a number" << endl;
-    cin >> number;
-
-    while (cin.fail())
-    {
-        cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-        cout << "Invalid Number , Enter a Valid One " << endl;
-
-        cin >> number;
-    }
-    return number;
+    return a + b;
+}
+int MySum(double a, double b)
+{
+    return a + b;
+}
+int MySum(int a, int b, int c)
+{
+    return a + b + c;
+}
+int MySum(double a, double b, double c)
+{
+    return a + b + c;
 }
 int main()
 {
-    cout << (12 & 25) << endl;
-    cout << (12 | 25) << endl;
+    cout << MySum(3, 4) << endl;
+    cout << MySum(3, 2, 4) << endl;
+    cout << MySum(3.0, 4.0) << endl;
+    cout << MySum(3.0, 2.0, 4.0) << endl;
 }
