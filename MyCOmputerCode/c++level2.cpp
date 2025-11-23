@@ -10,26 +10,13 @@
 
 using namespace MyInputLib;
 
-int MySum(int a, int b)
-{
-    return a + b;
-}
-int MySum(double a, double b)
-{
-    return a + b;
-}
-int MySum(int a, int b, int c)
-{
-    return a + b + c;
-}
-int MySum(double a, double b, double c)
-{
-    return a + b + c;
-}
 int main()
 {
-    cout << MySum(3, 4) << endl;
-    cout << MySum(3, 2, 4) << endl;
-    cout << MySum(3.0, 4.0) << endl;
-    cout << MySum(3.0, 2.0, 4.0) << endl;
+    auto x = 10;      // Type Integer
+    auto y = 12.5;    // Type double
+    auto z = "Rahaf"; // Type String
+
+    cout   << x << endl;
+    cout   << y << endl;
+    cout   << z << endl;
 }
