@@ -12,11 +12,9 @@ using namespace MyInputLib;
 
 int main()
 {
-    auto x = 10;      // Type Integer
-    auto y = 12.5;    // Type double
-    auto z = "Rahaf"; // Type String
+    int page = 1, totalPages = 5;
 
-    cout   << x << endl;
-    cout   << y << endl;
-    cout   << z << endl;
+    cout << x << endl;
+    cout << y << endl;
+    cout << z << endl;
 }
