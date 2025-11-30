@@ -50,4 +50,38 @@ namespace MyLib
         number++;
     }
 
+    struct stEmployee
+    {
+        string FistName;
+        string LastName;
+        double Salary;
+    };
+    void ReadEmployeesVector(vector<stEmployee> &vEmployees)
+    {
+        stEmployee STemployee;
+        char addMore;
+        do
+        {
+            cout << "\nEnter a Employee FirstName  to add : ";
+            getline(cin, STemployee.FistName);
+            cout << "\nEnter a Employee LastName   to add : ";
+            getline(cin, STemployee.LastName);
+            cout << "\nEnter a Employee Salary  to add : ";
+            getline(cin, STemployee.Salary);
+            vNumbers.push_back(STemployee);
+            cout << setw(2) << "\nDo you want to add more numbers? Y/N ?  : ";
+            cin >> addMore;
+
+        } while (addMore == 'Y' || addMore == 'y');
+    }
+
+    void PrintEmployeesVector(vector<int> vEmplyees)
+    {
+        for (stEmployee &emp : vEmplyees)
+        {
+            cout << "FirstName : " << emp.FistName << " \n LastName : " << emp.LastName << " \n Salary : " << emp.Salary << "\n\n";
+        }
+        cout << endl;
+    }
+
 }
