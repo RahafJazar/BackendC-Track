@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <vector>
 using namespace std;
 namespace MyLib
 {
@@ -66,16 +67,17 @@ namespace MyLib
             getline(cin, STemployee.FistName);
             cout << "\nEnter a Employee LastName   to add : ";
             getline(cin, STemployee.LastName);
-            cout << "\nEnter a Employee Salary  to add : ";
-            getline(cin, STemployee.Salary);
-            vNumbers.push_back(STemployee);
+            cout << "\nEnoter a Employee Salary  to add : ";
+            cin >> STemployee.Salary;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            vEmployees.push_back(STemployee);
             cout << setw(2) << "\nDo you want to add more numbers? Y/N ?  : ";
             cin >> addMore;
-
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear buffer
         } while (addMore == 'Y' || addMore == 'y');
     }
 
-    void PrintEmployeesVector(vector<int> vEmplyees)
+    void PrintEmployeesVector(vector<stEmployee> vEmplyees)
     {
         for (stEmployee &emp : vEmplyees)
         {
