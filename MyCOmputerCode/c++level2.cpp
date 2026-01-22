@@ -97,6 +97,7 @@ void PointerWithStructStack(stStudent s)
     cout << "Major: " << ps->Major << endl;
     cout << "Name: " << ps->Name << endl;
     cout << "Address in p is : " << ps << endl;
+    
 }
 
 void PointerWithArray(int arr2[], int size)
@@ -122,5 +123,12 @@ void DateAndTime()
     time_t now = time(0); // num of seconds since 1970
     cout << ctime(&now);
     tm *t = localtime(&now);
-    cout << t->
+    cout <<"Hour is : " << t->tm_hour<<endl;
+    cout <<"Minutes are: "<<t->tm_min<<endl;
+    cout <<"Seconds are: "<<t->tm_sec <<endl;
+    cout<<"Year is :"<<t->tm_year+1900<<endl;
+    cout<<"Month is : "<<t->tm_mon<<endl;
+    cout <<"day in month : "<<t->tm_mday<<endl;
+    cout<<"Week day : "<<t->tm_wday<<endl;
+
 }
