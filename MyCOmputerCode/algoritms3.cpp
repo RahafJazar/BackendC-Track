@@ -56,45 +56,63 @@ int removeDuplicates(vector<int> &nums)
 
 int searchInsert(vector<int> &nums, int target)
 {
-    int num = 0;
-    int index = 0;
+
     int left = 0;
     int right = nums.size() - 1;
-    int counter = 0;
-    while (num != target)
+    if (target > nums[nums.size() - 1])
     {
-        if (left <= right)
+        return right + 1;
+    }
+    while (left <= right)
+    {
+        int mid = (left + right) / 2;
+        if (nums[mid] == target)
         {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] == target)
-            {
-                index = mid;
-                num = nums[mid]
-            }
-            else if (nums[mid] < target)
-            {
-                left = mid + 1;
-            }
-            else if (nums[mid] > target)
-            {
-                right = mid - 1;
-            }
+            return mid;
         }
-        else
+        else if (nums[mid] < target)
         {
-            if (num < nums[nums.size() - 1])
-            {
-                return left;
-            }
-            index++;
-            num++;
+            left = mid + 1;
+        }
+        else if (nums[mid] > target)
+        {
+            right = mid - 1;
         }
     }
-    return index;
+
+    return left;
+}
+
+void merge(vector<int> &nums1, int m, vector<int> &nums2, int n)
+{
+    int k = m + n - 1;
+    int i = m - 1;
+    int j = n - 1;
+    // if n>0 && m>0
+    
+        while (j >= 0)
+        {
+
+            if (i >= 0 && nums1[i] > nums2[j])
+            {
+                nums1[k] = nums1[i];
+                i--;
+            }
+            else
+            {
+                nums1[k] = nums2[j];
+                j--;
+            }
+
+            k--;
+        }
+
+   
 }
 int main()
 {
 
-    vector<int> nums = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4}; // Input array
-    int k = searchInsert(nums, )
+    vector<int> nums1 = {0}; // Input array
+    vector<int> nums2 = {1};    // Input array
+    merge(nums1,0, nums2, 1);
 }
