@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-c++level2",
+      "appliesTo": "MyCOmputerCode/c++level2.cpp",
+      "type": "launch"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+Task Description
+__________________________________
+You  are required to develop a  c++ console-based  application to manage student records.
+The system must be modular , readable and follow  best practices used in real-world projects.
+
+The Application should allow:
+* Adding, viewing , updating , and deleting students
+* Calculating Student Averages
+* Validating User Input
+* Debugging and inspecting memory values during execution
+
+Project Structure (Mandatory)
+studentManagementSystem
+|
+|-main.cpp                       //program entry + menu
+|-student.h                      //struct+functions decl
+|-student.cpp                    //function definition
+|-utils.h                        //helper function
+|-utils.cpp
