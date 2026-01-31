@@ -22,7 +22,7 @@ void FillMatrixWithRandomNumbers(int matrix[3][3], short Rows, short Cols)
     }
 }
 
-void PrintMatrix(int matrix[3][3], short Rows, short Cols)
+void PrintMatrix(int matrix[4][3], short Rows, short Cols)
 {
     for (int i = 0; i < Rows; i++)
     {
@@ -90,7 +90,7 @@ void PrintColumnsSumArry(int sumArr[3], short Cols) {
     }
 }
 
-void FillMatrixWithOrderedNumbers(int matrix[3][3], short Rows, short Cols) {
+void FillMatrixWithOrderedNumbers(int matrix[4][3], short Rows, short Cols) {
     int  count = 0;
     for (short i = 0; i < Rows; i++) {
         for (short j = 0; j < Cols; j++) {
@@ -98,11 +98,17 @@ void FillMatrixWithOrderedNumbers(int matrix[3][3], short Rows, short Cols) {
         }
     }
 }
-
+void TransposeMatrix(int matrix[4][3], int transposeMatrix[4][3], short Rows, short Cols) {
+    for (int i = 0; i < Rows; i++) {
+        for (int j = 0; j < Cols; j++) {
+            transposeMatrix[i][j] = matrix[j][i];
+        }
+    }
+}
 int main()
 {
     srand(time(0));
-    int matrix[3][3];
+    int matrix[3][3],transposeMatrix[3][3];
     int sumArr[3];
     FillMatrixWithRandomNumbers(matrix, 3, 3);
     cout << "\n The Following is a 3x3 random matrix:\n";
@@ -118,8 +124,11 @@ int main()
     SumMatrixColumnsInArry(matrix, sumArr, 3, 3);
     PrintColumnsSumArry(sumArr, 3);
     cout << "\n The Following  is 3x3 Ordered Matrix : \n";
-    FillMatrixWithOrderedNumbers(matrix, 3, 3);
-    PrintMatrix(matrix, 3, 3);
+    FillMatrixWithOrderedNumbers(matrix, 4, 3);
+    PrintMatrix(matrix, 4, 3);
+    cout << "\nThe following is the 3x3 Transpose ordered Matrix :\n";
+    TransposeMatrix(matrix, transposeMatrix, 4, 3);
+    PrintMatrix(transposeMatrix, 4, 3);
     system("pause>0");
 
 }
