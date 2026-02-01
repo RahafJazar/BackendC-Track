@@ -111,7 +111,8 @@
     "typeinfo": "cpp",
     "variant": "cpp",
     "unordered_set": "cpp",
-    "stack": "cpp"
+    "stack": "cpp",
+    "ratio": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
