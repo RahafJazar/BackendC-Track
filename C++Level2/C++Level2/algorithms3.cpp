@@ -3,6 +3,7 @@
 #include <cmath>
 #include <ctime>
 #include <iomanip>
+#include <string>
 using namespace std;
 // create a random number from to
 int RandomNumber(int From, int To)
@@ -382,6 +383,185 @@ bool IsPalindromeMatrix(int matrix[3][3], short Rows, short Cols)
     return true;
 }
 
+void PrintFibonnaciUsingLoop(int length)
+{
+    int count = 1;
+    int prev2 = 0;
+    int prev1 = 1;
+    int sum = 0;
+    cout << setw(3) << prev2 + prev1;
+    while (count < length)
+    {
+        /* code */
+        sum = prev2 + prev1;
+        cout << setw(3) << prev2 + prev1;
+        prev2 = prev1;
+        prev1 = sum;
+        count++;
+    }
+}
+void PrintFibonnaciUsingRecursion(int length, int prev2, int prev1)
+{
+    if (length == 0)
+    { // base case
+
+        return;
+    }
+    cout << setw(3) << prev1;
+    PrintFibonnaciUsingRecursion(length - 1, prev1, prev1 + prev2);
+}
+
+string ReadString(string message)
+{
+    string s1;
+    cout << "\n"
+         << message << endl;
+
+    getline(cin, s1);
+    return s1;
+}
+void PrintFirstLetterOfEachWord(string text)
+
+{
+    bool isFirstLetter = true;
+    for (short i = 0; i < text.length(); i++)
+    {
+        if (text[i] != ' ' && isFirstLetter)
+        {
+            cout << text[i] << endl;
+        }
+        isFirstLetter = (text[i] == ' ') ? true : false;
+    }
+}
+void UpperFirstLetterOfEachWord(string &text)
+
+{
+    bool isFirstLetter = true;
+    for (short i = 0; i < text.length(); i++)
+    {
+        if (text[i] != ' ' && isFirstLetter)
+        {
+            text[i] = toupper(text[i]);
+        }
+        isFirstLetter = (text[i] == ' ') ? true : false;
+    }
+}
+void LowerFirstLetterOfEachWord(string &text)
+
+{
+    bool isFirstLetter = true;
+    for (short i = 0; i < text.length(); i++)
+    {
+        if (text[i] != ' ' && isFirstLetter)
+        {
+            text[i] = tolower(text[i]);
+        }
+        isFirstLetter = (text[i] == ' ') ? true : false;
+    }
+}
+
+void UpperTheString(string &text)
+{
+    for (short i = 0; i < text.length(); i++)
+    {
+        if (text[i] != ' ')
+        {
+            text[i] = toupper(text[i]);
+        }
+    }
+}
+void LowerTheString(string &text)
+{
+    for (short i = 0; i < text.length(); i++)
+    {
+        if (text[i] != ' ')
+        {
+            text[i] = tolower(text[i]);
+        }
+    }
+}
+char ReadCharacter(string message)
+{
+
+    char c1;
+    cout << "\n";
+    cout << message << endl;
+    cin >> c1;
+    return c1;
+}
+char InvertTheCharacter(char &c1)
+{
+    return (isupper(c1) ? tolower(c1) : toupper(c1));
+}
+
+void InvertAllStringLetterCase(string &text)
+{
+    for (int i = 0; i < text.length(); i++)
+    {
+        text[i] = InvertTheCharacter(text[i]);
+    }
+}
+enum enWhatToCount
+{
+    SmallLetters = 0,
+    CapitalLetters = 1,
+    All = 2
+};
+
+short CountLetters(string text, enWhatToCount whatToCount)
+{
+    short counter = 0;
+    for (short i = 0; i < text.length(); i++)
+    {
+        if (whatToCount == enWhatToCount::CapitalLetters && isupper(text[i]))
+        {
+            counter++;
+        }
+        if (whatToCount == enWhatToCount::SmallLetters && islower(text[i]))
+        {
+            counter++;
+        }
+    }
+    return counter;
+}
+short CountSmallLettersInTheString(string text)
+{
+    short smallLettersCount = 0;
+    for (short i = 0; i < text.length(); i++)
+    {
+        if (islower(text[i]))
+        {
+            smallLettersCount++;
+        }
+    }
+    return smallLettersCount;
+}
+short CountUpperLettersInTheString(string text)
+{
+    short upperLettersCount = 0;
+    for (short i = 0; i < text.length(); i++)
+    {
+        if (isupper(text[i]))
+        {
+            upperLettersCount++;
+        }
+    }
+    return upperLettersCount;
+}
+
+short CountSpecificLetter(string text, char character)
+{
+    short counter = 0;
+    for (short i = 0; i < text.length(); i++)
+    {
+
+        if (text[i] == character)
+        {
+            counter++;
+        }
+    }
+    return counter;
+}
 int main()
 {
     srand(time(0));
@@ -554,6 +734,61 @@ int main()
     {
         cout << "\nNO. no matrix is NOT palindrome\n";
     }
+
+    cout << "\nThe Following  is Fibonacci series using loop   :\n";
+    PrintFibonnaciUsingLoop(10);
+
+    cout << "\nThe Following  is Fibonacci series using recursion   :\n";
+    PrintFibonnaciUsingRecursion(10, 0, 1);
+
+    cout << "\nThe Following   First Letter Of Each Word  :\n";
+    string text = ReadString("Enter a text ");
+    PrintFirstLetterOfEachWord(text);
+
+    cout << "\nThe Following   upper  Letter Of Each Word  :\n";
+    UpperFirstLetterOfEachWord(text);
+    PrintFirstLetterOfEachWord(text);
+
+    cout << "\nThe Following   lower  Letter Of Each Word  :\n";
+    LowerFirstLetterOfEachWord(text);
+    PrintFirstLetterOfEachWord(text);
+
+    cout << "\nThe Following  Upper/lower the string  :\n";
+    cout << "\nString after upper :\n";
+    UpperTheString(text);
+    cout << text << endl;
+    cout << "\nString after lower :\n";
+    LowerTheString(text);
+    cout << text << endl;
+
+    cout << "\nThe Following  Invert the Character  :\n";
+    char c = ReadCharacter("Please Enter a character :");
+    cout << "\nchar after inverting case :\n";
+    cout << InvertTheCharacter(c) << endl;
+
+    cout << "\nThe Following  Invert letter case  :\n";
+    string s1 = ReadString("Enter a string text : ");
+    InvertAllStringLetterCase(s1);
+    cout << "\nString after Inverting all letter case:\n";
+    cout << s1 << endl;
+
+    cout << "\nThe Following :  Count Small/Capital letters  :\n";
+    string s2 = ReadString("Enter a string text : ");
+    cout << "\nString Length = " << s2.length() << endl;
+    cout << "\nCapital Letters Coumt = " << CountUpperLettersInTheString(s2) << endl;
+    cout << "\nSmall Ltters Count = " << CountSmallLettersInTheString(s2) << endl;
+
+    cout << "\nThe Following :  Count Small/Capital letters   using enum :\n";
+    string s3 = ReadString("Enter a string text : ");
+    cout << "\nString Length = " << s3.length() << endl;
+    cout << "\nCapital Letters Coumt = " << CountLetters(s3, enWhatToCount::CapitalLetters) << endl;
+    cout << "\nSmall Ltters Count = " << CountLetters(s3, enWhatToCount::SmallLetters) << endl;
+
+    cout << "\nThe Following :  Count specific letter in string   using enum :\n";
+    string s4 = ReadString("Enter a string text : ");
+    cout << "\nString Length = " << s4.length() << endl;
+    char ch1 = ReadCharacter("Please Enter a character :");
+    cout << "\nLetter '" << ch1 << "' count = " << CountSpecificLetter(s4, ch1) << endl;
 
     system("pause>0");
 }
