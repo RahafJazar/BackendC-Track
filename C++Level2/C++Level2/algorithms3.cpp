@@ -269,6 +269,7 @@ int ReadNumber(string message)
     int num;
     cout << message;
     cin >> num;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // تنظيف الـ buffer
     return num;
 }
 
@@ -416,7 +417,6 @@ string ReadString(string message)
     string s1;
     cout << "\n"
          << message << endl;
-
     getline(cin, s1);
     return s1;
 }
@@ -487,6 +487,7 @@ char ReadCharacter(string message)
     cout << "\n";
     cout << message << endl;
     cin >> c1;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // تنظيف الـ buffer
     return c1;
 }
 char InvertTheCharacter(char &c1)
@@ -549,18 +550,85 @@ short CountUpperLettersInTheString(string text)
     return upperLettersCount;
 }
 
-short CountSpecificLetter(string text, char character)
+short CountLetter(string text, char character, bool matchCase = true)
 {
     short counter = 0;
     for (short i = 0; i < text.length(); i++)
     {
 
-        if (text[i] == character)
+        if (tolower(text[i]) == tolower(character) && matchCase == false)
+        {
+            counter++;
+        }
+        else if (text[i] == character && matchCase)
         {
             counter++;
         }
     }
     return counter;
+}
+
+bool IsCharacterInTheString(string text, char character)
+{
+    for (short i = 0; i < text.length(); i++)
+    {
+        if (tolower(text[i]) == tolower(character))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool CheckIsVowels(char character)
+{
+    character = tolower(character);
+    return (character == 'a' || character == 'u' || character == 'e' || character == 'o' || character == 'i');
+}
+
+short CountVowels(string text)
+{
+    short counter = 0;
+    for (short i = 0; i < text.length(); i++)
+    {
+        if (CheckIsVowels(text[i]))
+        {
+            counter++;
+        }
+    }
+    return counter;
+}
+
+void PrintVowels(string text)
+{
+    cout << "\nVowels in string are : ";
+    for (short i = 0; i < text.length(); i++)
+    {
+        if (CheckIsVowels(text[i]))
+        {
+            cout << setw(3) << text[i];
+        }
+    }
+    cout << endl;
+}
+
+void PrintEachWordInTheString(string text)
+{
+
+    bool isFirstLetter = true;
+    for (short i = 0; i < text.length(); i++)
+    {
+        if (text[i] != ' ' && isFirstLetter != true)
+        {
+            cout << text[i];
+        }
+        else if (text[i] != ' ' && isFirstLetter)
+        {
+            cout << endl;
+            cout<<text[i];
+        }
+        isFirstLetter = (text[i] == ' ') ? true : false;
+    }
 }
 int main()
 {
@@ -788,7 +856,32 @@ int main()
     string s4 = ReadString("Enter a string text : ");
     cout << "\nString Length = " << s4.length() << endl;
     char ch1 = ReadCharacter("Please Enter a character :");
-    cout << "\nLetter '" << ch1 << "' count = " << CountSpecificLetter(s4, ch1) << endl;
+    cout << "\nLetter '" << ch1 << "' count = " << CountLetter(s4, ch1) << endl;
+    cout << "\nLetter '" << ch1 << "' Or '" << InvertTheCharacter(ch1) << "' Count = " << CountLetter(s4, ch1, false) << endl;
+
+    cout << "\nThe Following  check if the character is a vowle:\n";
+    char ch2 = ReadCharacter("Please Enter a character :");
+    bool isVowel = CheckIsVowels(ch2);
+    if (isVowel)
+    {
+        cout << "\nYES, Letter \'" << ch2 << "\' is vowel\n";
+    }
+    else
+    {
+        cout << "\nNO, Letter \'" << ch2 << "\' is not a vowel\n";
+    }
+
+    cout << "\nThe Following  Count Vowels in the string : \n";
+    string s5 = ReadString("Enter a string text : ");
+    cout << "\nNumber Of  Vowels is : " << CountVowels(s5) << endl;
+
+    cout << "\nThe Following  Print Vowels in the string : \n";
+    string s6 = ReadString("Enter a string text : ");
+    PrintVowels(s6);
+
+    cout << "\nThe Following  Print Each word in the string  : \n";
+    string s7 = ReadString("Enter a string text : ");
+    PrintEachWordInTheString(s7);
 
     system("pause>0");
 }
