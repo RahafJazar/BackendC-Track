@@ -4,7 +4,7 @@
 #include <ctime>
 #include <iomanip>
 #include <string>
-#include<vector>
+#include <vector>
 using namespace std;
 // create a random number from to
 int RandomNumber(int From, int To)
@@ -626,114 +626,148 @@ void PrintEachWordInTheString(string text)
         else if (text[i] != ' ' && isFirstLetter)
         {
             cout << endl;
-            cout<<text[i];
+            cout << text[i];
         }
         isFirstLetter = (text[i] == ' ') ? true : false;
     }
 }
 void PrintEachWordInTheStringUsingSubString(string text)
 {
-    string delim = " ";//الفاصل
+    string delim = " "; // الفاصل
     cout << "\nYour String Words are:\n";
     short pos = 0;
-    string sWord; 
-    while ((pos = text.find(delim)) != std::string::npos) {
+    string sWord;
+    while ((pos = text.find(delim)) != std::string::npos)
+    {
         sWord = text.substr(0, pos);
-        if (sWord != "") {
+        if (sWord != "")
+        {
             cout << sWord << endl;
         }
         text.erase(0, pos + delim.length());
     }
-    if (text != "") {
+    if (text != "")
+    {
         cout << text << endl;
     }
-
 }
-
 
 short CountEachWordInTheStringUsingSubString(string text)
 {
-    string delim = " ";//الفاصل
+    string delim = " "; // الفاصل
     short pos = 0;
     string sWord;
-    short countOfWords = 0;//count each word in the string 
-    while ((pos = text.find(delim)) != std::string::npos) {
+    short countOfWords = 0; // count each word in the string
+    while ((pos = text.find(delim)) != std::string::npos)
+    {
         sWord = text.substr(0, pos);
-        if (sWord != "") {
+        if (sWord != "")
+        {
             countOfWords++;
         }
         text.erase(0, pos + delim.length());
     }
-    if (text != "") {
+    if (text != "")
+    {
         countOfWords++;
     }
     return countOfWords;
-
-
 }
 
-vector<string> SplitString(string  text, string delim) {
+vector<string> SplitString(string text, string delim)
+{
     vector<string> vString;
     short pos = 0;
     string sword;
-    while ((pos = text.find(delim)) != std::string::npos) {
+    while ((pos = text.find(delim)) != std::string::npos)
+    {
         sword = text.substr(0, pos);
-        if (sword != "") {
+        if (sword != "")
+        {
             vString.push_back(sword);
         }
         text.erase(0, pos + delim.length());
     }
-    if (text != "") {
+    if (text != "")
+    {
         vString.push_back(text);
     }
     return vString;
 }
-short GetVectorNumOfTokens(vector<string> vector_) {
+short GetVectorNumOfTokens(vector<string> vector_)
+{
     return vector_.size();
 }
-void PrintVectorTokens(vector <string> vector_) {
-    for (string token : vector_) {
+void PrintVectorTokens(vector<string> vector_)
+{
+    for (string token : vector_)
+    {
         cout << token << endl;
-     }
+    }
 }
 
-string TrimLeft(string text) {
-    for (short i = 0; i < text.length(); i++) {
-        if (text[i] != ' ') {
+string TrimLeft(string text)
+{
+    for (short i = 0; i < text.length(); i++)
+    {
+        if (text[i] != ' ')
+        {
             return text.substr(i);
-         }
-   }
+        }
+    }
 }
-string TrimRight(string text) { 
-     for (short i = text.length()-1; i >=0; i--) {
-         if (text[i] != ' ') {
-             return text.substr(0, i+1);
-         }
-     }
-  
+string TrimRight(string text)
+{
+    for (short i = text.length() - 1; i >= 0; i--)
+    {
+        if (text[i] != ' ')
+        {
+            return text.substr(0, i + 1);
+        }
+    }
 }
-string Trim(string text) {
-    return(TrimRight(TrimLeft(text)));
+string Trim(string text)
+{
+    return (TrimRight(TrimLeft(text)));
 }
 
-string JoinString(vector<string> vector_, string delim) {
+string JoinString(vector<string> vector_, string delim)
+{
     string joiningString = "";
-    for (string &s :vector_) {
+    for (string &s : vector_)
+    {
         joiningString = joiningString + s + delim;
-        
     }
-    
-    return joiningString.substr(0,joiningString.length()-delim.length());
+
+    return joiningString.substr(0, joiningString.length() - delim.length());
 }
-//overloading 
-string JoinString(string sArray[], short length, string delim) {
+// overloading
+string JoinString(string sArray[], short length, string delim)
+{
     string joiningString = "";
-    for (short i = 0; i < length;i++) {
+    for (short i = 0; i < length; i++)
+    {
         joiningString = joiningString + sArray[i] + delim;
-        
     }
-    
-    return joiningString.substr(0,joiningString.length()-delim.length());
+
+    return joiningString.substr(0, joiningString.length() - delim.length());
+}
+
+string ReverseWordsInTheString(string text)
+{
+    string sReversed = "";
+    vector<string> vString = SplitString(text, " ");
+    // declare iterator
+    vector<string>::iterator iter = vString.end();
+    while (iter != vString.begin())
+    {
+        iter--;
+        sReversed += *iter + " ";
+
+        /* code */
+    }
+
+    return TrimRight(sReversed);
 }
 int main()
 {
@@ -994,29 +1028,35 @@ int main()
     PrintEachWordInTheStringUsingSubString(s8);
 
     cout << "\nThe Following  Count Each word in the string using subtring  : \n";
-    string s9 = ReadString("Enter a string text : "); 
+    string s9 = ReadString("Enter a string text : ");
     cout << "\nThe number of words in  the string : "<<CountEachWordInTheStringUsingSubString(s9) << endl;
 
 
     cout << "\nThe Following  split each  word in the string then add it to your vector  : \n";
-    string s10 = ReadString("Enter a string text : "); 
+    string s10 = ReadString("Enter a string text : ");
     vector <string> vec = SplitString(s10, " ");
     cout << "Tokens = " << GetVectorNumOfTokens(vec) << endl;
     PrintVectorTokens(vec);
 
 
     cout << "\nThe Following Trim Left ,Right , trim  the string   : \n";
-    string s11 = ReadString("Enter a string text : "); 
-    cout << "\nTrimLeft  = " << TrimLeft(s11) << endl; 
+    string s11 = ReadString("Enter a string text : ");
+    cout << "\nTrimLeft  = " << TrimLeft(s11) << endl;
     cout << "\nTrimRight = " << TrimRight(s11) <<  endl;
     cout << "\nTrim      = " << Trim(s11) <<  endl;*/
- 
-    cout << "\nThe Following Join  string  vector : \n";
+
+    /*cout << "\nThe Following Join  string  vector : \n";
     vector<string> vec1 = { "Mohammed","@Programming" ,"Devices" };
     cout << JoinString(vec1, ",")<<endl;
-    
+
     cout << "\nThe Following Join  string Array  : \n";
     string arr1[] = {"Mohammed","@Programming" ,"Devices"};
-    cout << JoinString(arr1,3,",") << endl;
+    cout << JoinString(arr1,3,",") << endl;*/
+
+    cout << "\nThe Following  Print Reversed word in the string : \n";
+    string s12 = ReadString("Enter a string text : ");
+    cout << "\n\nString after reversing word : \n";
+    cout << ReverseWordsInTheString(s12) << endl;
+
     system("pause>0");
 }
