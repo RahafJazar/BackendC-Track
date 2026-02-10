@@ -674,6 +674,12 @@ short CountEachWordInTheStringUsingSubString(string text)
     return countOfWords;
 }
 
+/*==============================SplitString======================================
+=> time complexity :
+*تقسم النص الى كلمات
+*اذا كان النص فيه -> "n" letters & "k" words => then find space for each wor d is O(n)
+================================================================================*/
+
 vector<string> SplitString(string text, string delim)
 {
     vector<string> vString;
@@ -731,6 +737,11 @@ string Trim(string text)
     return (TrimRight(TrimLeft(text)));
 }
 
+/*==================JoinString=========================
+=> time complexity :
+*تنضم كل الكلمات مع الفاصل → O(n).
+=======================================================*/
+
 string JoinString(vector<string> vector_, string delim)
 {
     string joiningString = "";
@@ -741,6 +752,7 @@ string JoinString(vector<string> vector_, string delim)
 
     return joiningString.substr(0, joiningString.length() - delim.length());
 }
+
 // overloading
 string JoinString(string sArray[], short length, string delim)
 {
@@ -768,6 +780,71 @@ string ReverseWordsInTheString(string text)
     }
 
     return TrimRight(sReversed);
+}
+
+/*=======================ReplaceWordInTheString===================================
+=> time complexity :
+/==SplitString===/
+*تقسم النص الى كلمات
+*اذا كان النص فيه -> "n" letters & "k" words => then find space for each wor d is O(n)
+/==حلقة while (iter != vString.end())==/
+*تمر على جميع الكلمات => k =>O(k)
+* *iter = replacedWord; => طول الكلمة هو m => O(k * m)
+*  JoinString ->O(n)
+
+= O(n + k*m + n) =>لانه ال "n" larger than k*m ==> O(2n) =O(n)
+
+=================================================================================*/
+
+string ReplaceWordInTheString(string text, string word, string replacedWord, bool matchCase = true)
+{
+    string joinedString = "";
+    vector<string> vString = SplitString(text, " ");
+
+    // declare iterator
+    vector<string>::iterator iter = vString.begin();
+    while (iter != vString.end())
+    {
+        iter++;
+        if (*iter == word && matchCase)
+        {
+            *iter = replacedWord;
+        }
+        else if (matchCase == false)
+        {
+            LowerTheString(*iter);
+            LowerTheString(word);
+            if (*iter == word)
+            {
+                *iter = replacedWord;
+            }
+        }
+    }
+    return JoinString(vString, " ");
+}
+
+/*====================ReplaceWordInTheStringUsingBuiltInFunction==========================
+=> time complexity :
+/==SplitString===/
+*text.find(sToRplace) => تبحث  عن الكلمة في  النص  => worst case: word is whole text -> word=m , text length =n -> O(n*m)
+*text.replace =>يستبدل الكلمة بكلمة اخرى  => replace built in function in c++ is O(n)
+* الحلقة while => تتكرر بعدد مرات ظهور الكلمة f.  =>  find+replace (O(2n+m)) for each iterate => O(f*n)
+= O(n*m + n + f*n)
+=O(n +n + f*n)
+=O(2n +f*n)
+=O(f*n)
+============================================================================================*/
+
+string ReplaceWordInTheStringUsingBuiltInFunction(string text, string sToRplace, string sReplacedTo)
+{
+    short pos = text.find(sToRplace);
+
+    while (pos != std::string::npos)
+    {
+        text = text.replace(pos, sToRplace.length(), sReplacedTo);
+        pos = text.find(sToRplace); // find next
+    }
+    return text;
 }
 int main()
 {
@@ -1051,12 +1128,25 @@ int main()
 
     cout << "\nThe Following Join  string Array  : \n";
     string arr1[] = {"Mohammed","@Programming" ,"Devices"};
-    cout << JoinString(arr1,3,",") << endl;*/
+    cout << JoinString(arr1,3,",") << endl;
 
     cout << "\nThe Following  Print Reversed word in the string : \n";
     string s12 = ReadString("Enter a string text : ");
     cout << "\n\nString after reversing word : \n";
-    cout << ReverseWordsInTheString(s12) << endl;
+    cout << ReverseWordsInTheString(s12) << endl;*/
+
+    cout << "\nThe Following  Replace the word in the string  : \n";
+    string s13 = ReadString("Enter a string text : ");
+    string word = "Jordan";
+    string replacementWord = "USA";
+    cout << "\n\nString after  replace word " << word << " by " << replacementWord << "(match case) : \n";
+    cout << ReplaceWordInTheString(s13, word, replacementWord) << endl;
+    cout << "\n\nString after  replace word " << word << " by " << replacementWord << "(doesn't match case) : \n";
+    cout << ReplaceWordInTheString(s13, word, replacementWord, false) << endl;
+
+    cout << "\nThe Following  Replace the word in the string by built in function   : \n";
+    cout << "\n\nString after  replace word " << word << " by " << replacementWord << " : \n";
+    cout << ReplaceWordInTheStringUsingBuiltInFunction(s13, word, replacementWord) << endl;
 
     system("pause>0");
 }
