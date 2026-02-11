@@ -851,6 +851,19 @@ string ReplaceWordInTheStringUsingBuiltInFunction(string text, string sToRplace,
     }
     return text;
 }
+
+string RemovePunctuationsFromTheString(string text)
+{
+    string sWithoutPuctuations = "";
+    for (char elem : text)
+    {
+        if (!ispunct(elem))
+        {
+            sWithoutPuctuations += elem;
+        }
+    }
+    return sWithoutPuctuations;
+}
 int main()
 {
     /*srand(time(0));
@@ -1140,18 +1153,23 @@ int main()
     cout << "\n\nString after reversing word : \n";
     cout << ReverseWordsInTheString(s12) << endl;*/
 
-    cout << "\nThe Following  Replace the word in the string  : \n";
-    string s13 = ReadString("Enter a string text : ");
-    string word = "Jordan";
-    string replacementWord = "USA";
-    cout << "\n\nString after  replace word " << word << " by " << replacementWord << "(match case) : \n";
-    cout << ReplaceWordInTheString(s13, word, replacementWord) << endl;
-    cout << "\n\nString after  replace word " << word << " by " << replacementWord << "(doesn't match case) : \n";
-    cout << ReplaceWordInTheString(s13, word, replacementWord, false) << endl;
+    /*  cout << "\nThe Following  Replace the word in the string  : \n";
+      string s13 = ReadString("Enter a string text : ");
+      string word = "Jordan";
+      string replacementWord = "USA";
+      cout << "\n\nString after  replace word " << word << " by " << replacementWord << "(match case) : \n";
+      cout << ReplaceWordInTheString(s13, word, replacementWord) << endl;
+      cout << "\n\nString after  replace word " << word << " by " << replacementWord << "(doesn't match case) : \n";
+      cout << ReplaceWordInTheString(s13, word, replacementWord, false) << endl;
 
-    cout << "\nThe Following  Replace the word in the string by built in function   : \n";
-    cout << "\n\nString after  replace word " << word << " by " << replacementWord << " : \n";
-    cout << ReplaceWordInTheStringUsingBuiltInFunction(s13, word, replacementWord) << endl;
+      cout << "\nThe Following  Replace the word in the string by built in function   : \n";
+      cout << "\n\nString after  replace word " << word << " by " << replacementWord << " : \n";
+      cout << ReplaceWordInTheStringUsingBuiltInFunction(s13, word, replacementWord) << endl;*/
+
+    cout << "\nThe Following remove punctuations using built in func : \n";
+    string s14 = ReadString("Enter a string text : ");
+    cout << "String after remove punctuations : \n"
+         << RemovePunctuationsFromTheString(s14) << endl;
 
     system("pause>0");
 }
