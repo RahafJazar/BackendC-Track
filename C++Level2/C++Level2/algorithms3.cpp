@@ -461,7 +461,7 @@ void LowerFirstLetterOfEachWord(string &text)
     }
 }
 
-void UpperTheString(string &text)
+string UpperTheString(string &text)
 {
     for (short i = 0; i < text.length(); i++)
     {
@@ -470,8 +470,9 @@ void UpperTheString(string &text)
             text[i] = toupper(text[i]);
         }
     }
+    return text;
 }
-void LowerTheString(string &text)
+string LowerTheString(string &text)
 {
     for (short i = 0; i < text.length(); i++)
     {
@@ -480,6 +481,7 @@ void LowerTheString(string &text)
             text[i] = tolower(text[i]);
         }
     }
+    return text;
 }
 char ReadCharacter(string message)
 {
@@ -805,20 +807,23 @@ string ReplaceWordInTheString(string text, string word, string replacedWord, boo
     vector<string>::iterator iter = vString.begin();
     while (iter != vString.end())
     {
-        iter++;
-        if (*iter == word && matchCase)
+
+        if (matchCase)
         {
-            *iter = replacedWord;
-        }
-        else if (matchCase == false)
-        {
-            LowerTheString(*iter);
-            LowerTheString(word);
             if (*iter == word)
             {
                 *iter = replacedWord;
             }
         }
+        else
+        {
+
+            if (LowerTheString(*iter) == LowerTheString(word))
+            {
+                *iter = replacedWord;
+            }
+        }
+        iter++;
     }
     return JoinString(vString, " ");
 }
