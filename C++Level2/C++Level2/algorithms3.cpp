@@ -864,6 +864,97 @@ string RemovePunctuationsFromTheString(string text)
     }
     return sWithoutPuctuations;
 }
+
+struct sClient
+{
+    string AccountNumber;
+    string PinCode;
+    string Name;
+    string Phone;
+    double AccountBalance;
+};
+sClient ReadNewClient()
+{
+    sClient client;
+    cout << "\nEnter Account Number ? ";
+    getline(cin, client.AccountNumber);
+    cout << "\nEnter PinCode ? ";
+    getline(cin, client.PinCode);
+    cout << "\nEnter  Name ? ";
+    getline(cin, client.Name);
+    cout << "\nEnter  Phone ? ";
+    getline(cin, client.Phone);
+    cout << "\nEnter  AccountBalance ? ";
+    cin >> client.AccountBalance;
+    cin.ignore();
+
+    return client;
+}
+
+/*====================ConvertRecordToLine==========================
+=> time complexity :
+n1 = length(client.AccountNumber)
+n2 = length(client.PinCode)
+n3 = length(client.Name)
+n4 = length(client.Phone)
+n5 = length(to_string(client.AccountBalance))
+d = length(delimeter)
+=(n1+n2+n3+n4+n5+4*d) ===> تقرببا O(N) where N is length of string
+NOT TO PREVENT COPY THE STRING EACH CONCTENATION -> USE RESERVE KEYWORD => تخصص مساحة تقريبية بالبداية فما بتنسخ الا اذا صار طول ال STRING  >>> اكبر من الرقم المعطاة
+============================================================================================*/
+string ConvertRecordToLine(sClient client, string delimeter)
+{
+    string sClientRecord = "";
+    sClientRecord.reserve(100);
+    sClientRecord += client.AccountNumber + delimeter;
+    sClientRecord += client.PinCode + delimeter;
+    sClientRecord += client.Name + delimeter;
+    sClientRecord += client.Phone + delimeter;
+    sClientRecord += to_string(client.AccountBalance);
+
+    return sClientRecord;
+}
+
+/*====================ConvertRecordToLine==========================
+=> time complexity :
+/==SplitString===/
+SplitString(line, delimeter)
+
+هذا يعتمد على طول السطر line (دعنا نقول طول السطر = N حرف)
+
+عادةً الوقت = O(N) لأن الكمبيوتر يقرأ كل حرف مرة واحدة ويفصل النصوص.
+
+باقي العمليات (تعيين القيم في client + stod)
+
+صغيرة جدًا بالمقارنة مع طول السطر → O(1) لكل عملية تقريبًا.
+
+✅ النتيجة:
+
+الوقت الكلي = O(N) (يتناسب مع طول السطر).
+============================================================================================*/
+sClient ConvertLineToRecord(string line, string delimeter)
+{
+    sClient client;
+    vector<string> vClientData = SplitString(line, delimeter);
+
+    client.AccountNumber = vClientData[0];
+    client.PinCode = vClientData[1];
+    client.Name = vClientData[2];
+    client.Phone = vClientData[3];
+    client.AccountBalance = stod(vClientData[4]);
+
+    return client;
+}
+
+void PrintClient(sClient client)
+{
+    cout << "\nThe following is the extracted client record : \n";
+    cout << "\nAccount Number : " << client.AccountNumber << endl;
+    cout << "\nPinCode        : " << client.PinCode << endl;
+    cout << "\nName           : " << client.Name << endl;
+    cout << "\nPhone          : " << client.Phone << endl;
+    cout << "\nAccountBalance : " << client.AccountBalance << endl;
+}
 int main()
 {
     /*srand(time(0));
@@ -1166,10 +1257,22 @@ int main()
       cout << "\n\nString after  replace word " << word << " by " << replacementWord << " : \n";
       cout << ReplaceWordInTheStringUsingBuiltInFunction(s13, word, replacementWord) << endl;*/
 
-    cout << "\nThe Following remove punctuations using built in func : \n";
-    string s14 = ReadString("Enter a string text : ");
-    cout << "String after remove punctuations : \n"
-         << RemovePunctuationsFromTheString(s14) << endl;
+    // cout << "\nThe Following remove punctuations using built in func : \n";
+    // string s14 = ReadString("Enter a string text : ");
+    // cout << "String after remove punctuations : \n"
+    //      << RemovePunctuationsFromTheString(s14) << endl;
+
+    /*cout << "\nThe Following  convert record to line  : \n";
+   cout << "\nPlease Enter Client Data :\n";
+   sClient client;
+   client = ReadNewClient();
+   cout << "\nClient Record For saving is :\n"
+        << ConvertRecordToLine(client, "#//") << endl;*/
+    cout << "\nThe Following  convert  line  to record  : \n";
+    string s15 = "A300#//12345#//Rahaf Jazar#//0233524545#//6000.000000";
+    sClient client;
+    client = ConvertLineToRecord(s15, "#//");
+    PrintClient(client);
 
     system("pause>0");
 }
