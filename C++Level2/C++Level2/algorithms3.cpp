@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <string>
 #include <vector>
+#include <fstream>
 using namespace std;
 // create a random number from to
 int RandomNumber(int From, int To)
@@ -954,6 +955,25 @@ void PrintClient(sClient client)
     cout << "\nName           : " << client.Name << endl;
     cout << "\nPhone          : " << client.Phone << endl;
     cout << "\nAccountBalance : " << client.AccountBalance << endl;
+}
+
+void AddNewClient()
+{
+    fstream myFile;
+}
+
+void AddClients()
+{
+    char AddMore = "y";
+    do
+    {
+        system("cls");
+        cout << "Adding new client :\n\n";
+        AddNewClient();
+        cout << "\nClient added successfully , do you want to add more client ? : ";
+        cin >> AddMore;
+        cin.ignore();
+    } while (toupper(AddMore) == 'Y')
 }
 int main()
 {
