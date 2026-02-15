@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{1F81E8A4-C4B3-4577-9E64-631DD3AC959D}|C\u002B\u002BLevel2\\C\u002B\u002BLevel2.vcxproj|solutionrelative:C\u002B\u002BLevel2\\algorithms3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{1F81E8A4-C4B3-4577-9E64-631DD3AC959D}|C\u002B\u002BLevel2\\C\u002B\u002BLevel2.vcxproj|C:\\Users\\User\\BackendC-Track\\C\u002B\u002BLevel2\\C\u002B\u002BLevel2\\clients.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{1F81E8A4-C4B3-4577-9E64-631DD3AC959D}|C\u002B\u002BLevel2\\C\u002B\u002BLevel2.vcxproj|solutionrelative:C\u002B\u002BLevel2\\clients.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1F81E8A4-C4B3-4577-9E64-631DD3AC959D}|C\u002B\u002BLevel2\\C\u002B\u002BLevel2.vcxproj|C:\\Users\\User\\BackendC-Track\\C\u002B\u002BLevel2\\C\u002B\u002BLevel2\\C\u002B\u002BLevel2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{1F81E8A4-C4B3-4577-9E64-631DD3AC959D}|C\u002B\u002BLevel2\\C\u002B\u002BLevel2.vcxproj|solutionrelative:C\u002B\u002BLevel2\\C\u002B\u002BLevel2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -20,10 +24,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D5004FEC-4424-4234-8428-16BCE0BAC94A}|MyLib\\MyLib.vcxproj|C:\\Users\\User\\BackendC-Track\\C\u002B\u002BLevel2\\MyLib\\framework.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D5004FEC-4424-4234-8428-16BCE0BAC94A}|MyLib\\MyLib.vcxproj|solutionrelative:MyLib\\framework.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8B3556E-ABD5-407B-A771-FB48EE7B1FAC}|StudentManagementSystem\\StudentManagementSystem.vcxproj|C:\\Users\\User\\BackendC-Track\\C\u002B\u002BLevel2\\StudentManagementSystem\\description.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A8B3556E-ABD5-407B-A771-FB48EE7B1FAC}|StudentManagementSystem\\StudentManagementSystem.vcxproj|solutionrelative:StudentManagementSystem\\description.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A8B3556E-ABD5-407B-A771-FB48EE7B1FAC}|StudentManagementSystem\\StudentManagementSystem.vcxproj|C:\\Users\\User\\BackendC-Track\\C\u002B\u002BLevel2\\StudentManagementSystem\\StudentManagementSystem.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -41,7 +41,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -49,20 +49,33 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "clients.txt",
+              "DocumentMoniker": "C:\\Users\\User\\BackendC-Track\\C\u002B\u002BLevel2\\C\u002B\u002BLevel2\\clients.txt",
+              "RelativeDocumentMoniker": "C\u002B\u002BLevel2\\clients.txt",
+              "ToolTip": "C:\\Users\\User\\BackendC-Track\\C\u002B\u002BLevel2\\C\u002B\u002BLevel2\\clients.txt",
+              "RelativeToolTip": "C\u002B\u002BLevel2\\clients.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-02-14T07:54:08.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "algorithms3.cpp",
               "DocumentMoniker": "C:\\Users\\User\\BackendC-Track\\C\u002B\u002BLevel2\\C\u002B\u002BLevel2\\algorithms3.cpp",
               "RelativeDocumentMoniker": "C\u002B\u002BLevel2\\algorithms3.cpp",
-              "ToolTip": "C:\\Users\\User\\BackendC-Track\\C\u002B\u002BLevel2\\C\u002B\u002BLevel2\\algorithms3.cpp*",
-              "RelativeToolTip": "C\u002B\u002BLevel2\\algorithms3.cpp*",
-              "ViewState": "AgIAAOcDAAAAAAAAAAAcwPkDAAAQAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\User\\BackendC-Track\\C\u002B\u002BLevel2\\C\u002B\u002BLevel2\\algorithms3.cpp",
+              "RelativeToolTip": "C\u002B\u002BLevel2\\algorithms3.cpp",
+              "ViewState": "AgIAAOEFAAAAAAAAAAAAAHwEAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-01-30T03:36:48.009Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "vector",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\vector",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\vector",
@@ -71,18 +84,6 @@
               "ViewState": "AgIAAIEIAAAAAAAAAAAowIsIAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2026-01-11T05:30:57.563Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "description.txt",
-              "DocumentMoniker": "C:\\Users\\User\\BackendC-Track\\C\u002B\u002BLevel2\\StudentManagementSystem\\description.txt",
-              "RelativeDocumentMoniker": "StudentManagementSystem\\description.txt",
-              "ToolTip": "C:\\Users\\User\\BackendC-Track\\C\u002B\u002BLevel2\\StudentManagementSystem\\description.txt",
-              "RelativeToolTip": "StudentManagementSystem\\description.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2026-01-03T18:20:27.794Z"
             },
             {
               "$type": "Document",
@@ -98,7 +99,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "MyLib.h",
               "DocumentMoniker": "C:\\Users\\User\\BackendC-Track\\C\u002B\u002BLevel2\\C\u002B\u002BLevel2\\MyLib.h",
               "RelativeDocumentMoniker": "C\u002B\u002BLevel2\\MyLib.h",
@@ -122,7 +123,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "framework.h",
               "DocumentMoniker": "C:\\Users\\User\\BackendC-Track\\C\u002B\u002BLevel2\\MyLib\\framework.h",
               "RelativeDocumentMoniker": "MyLib\\framework.h",
@@ -134,7 +135,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "C\u002B\u002BLevel2.cpp",
               "DocumentMoniker": "C:\\Users\\User\\BackendC-Track\\C\u002B\u002BLevel2\\C\u002B\u002BLevel2\\C\u002B\u002BLevel2.cpp",
               "RelativeDocumentMoniker": "C\u002B\u002BLevel2\\C\u002B\u002BLevel2.cpp",
@@ -142,7 +143,8 @@
               "RelativeToolTip": "C\u002B\u002BLevel2\\C\u002B\u002BLevel2.cpp",
               "ViewState": "AgIAAL8BAAAAAAAAAAAAAMoBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-01-03T17:34:51.751Z"
+              "WhenOpened": "2026-01-03T17:34:51.751Z",
+              "EditorCaption": ""
             }
           ]
         }
