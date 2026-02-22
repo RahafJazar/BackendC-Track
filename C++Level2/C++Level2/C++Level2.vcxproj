@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="algorithms3.cpp" />
+    <ClCompile Include="Bank1Project.cpp" />
     <ClCompile Include="C++Level2.cpp" />
   </ItemGroup>
   <ItemGroup>
