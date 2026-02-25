@@ -123,9 +123,13 @@ void AddClients()
 	{
 		system("cls");
 		cout << "Adding new client :\n\n";
-		
-	}
+		AddNewClient();
+		cout << "\n Client added successfully ,do you want to add more clients? : ";
+		cin >> AddMore;
+		cin.ignore();
+	} while (toupper(AddMore) == 'Y');
 }
+//============
 
 int main()
 {
