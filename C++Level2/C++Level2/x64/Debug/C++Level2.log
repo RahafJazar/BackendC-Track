@@ -1,13 +1,4 @@
-﻿  algorithms3.cpp
-C:\Users\User\BackendC-Track\C++Level2\C++Level2\algorithms3.cpp(643,28): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
-C:\Users\User\BackendC-Track\C++Level2\C++Level2\algorithms3.cpp(664,28): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
-C:\Users\User\BackendC-Track\C++Level2\C++Level2\algorithms3.cpp(691,28): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
-C:\Users\User\BackendC-Track\C++Level2\C++Level2\algorithms3.cpp(708,24): warning C4267: 'return': conversion from 'size_t' to 'short', possible loss of data
-C:\Users\User\BackendC-Track\C++Level2\C++Level2\algorithms3.cpp(730,18): warning C4267: 'initializing': conversion from 'size_t' to 'short', possible loss of data
-C:\Users\User\BackendC-Track\C++Level2\C++Level2\algorithms3.cpp(846,15): warning C4267: 'initializing': conversion from 'size_t' to 'short', possible loss of data
-C:\Users\User\BackendC-Track\C++Level2\C++Level2\algorithms3.cpp(851,24): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
-C:\Users\User\BackendC-Track\C++Level2\C++Level2\algorithms3.cpp(727,1): warning C4715: 'TrimLeft': not all control paths return a value
-C:\Users\User\BackendC-Track\C++Level2\C++Level2\algorithms3.cpp(737,1): warning C4715: 'TrimRight': not all control paths return a value
-C:\Users\User\BackendC-Track\C++Level2\C++Level2\algorithms3.cpp(1115,1): warning C4715: 'DeleteClientByAcoountNumber': not all control paths return a value
-C:\Users\User\BackendC-Track\C++Level2\C++Level2\algorithms3.cpp(1167,1): warning C4715: 'UpdateClientByAcoountNumber': not all control paths return a value
+﻿  Bank1Project.cpp
+C:\Users\User\BackendC-Track\C++Level2\C++Level2\Bank1Project.cpp(117,25): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
+C:\Users\User\BackendC-Track\C++Level2\C++Level2\Bank1Project.cpp(255,20): warning C4101: 'mainMenuOptions': unreferenced local variable
   C++Level2.vcxproj -> C:\Users\User\BackendC-Track\C++Level2\x64\Debug\C++Level2.exe
