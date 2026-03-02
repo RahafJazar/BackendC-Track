@@ -38,6 +38,9 @@ void AddNewClient();
 bool DeleteClientByAcoountNumber(vector<sClient> &clients, string accountNumber);
 bool MarkClientForDeleteByAccountNumber(vector<sClient> &clients, string accountNumber);
 void ShowDeleteClientScreen();
+sClient ChangeClientRecord(string accountNumber);
+bool UpdateClientByAcoountNumber(vector<sClient> &clients, string accountNumber);
+void ShowUpdateClientScreen();
 
 sClient ReadNewClient();
 
@@ -134,21 +137,22 @@ void PrintClient(sClient client)
 
 //============Save Vector To The File=====================/
 
-vector<sClient> SaveClientsDataToFile(vector<sClient> &clients, string filename)
+void SaveClientsDataToFile(vector<sClient> &clients, string filename)
 {
 	fstream MyFile;
 	MyFile.open(filename, ios::out); // overwrite
-
-	for (sClient c : clients)
+	if (MyFile.is_open())
 	{
-		if (c.MarkForDelete == false)
+		for (sClient c : clients)
 		{
+			if (c.MarkForDelete == false)
+			{
 
-			string line = ConvertRecordToLine(c, DELIMETER);
-			cout << line << endl;
+				string line = ConvertRecordToLine(c, DELIMETER);
+				MyFile << line << endl;
+			}
 		}
 	}
-	return clients;
 }
 //=============Convert Record To Line=======================/
 string ConvertRecordToLine(sClient client, string delimeter)
@@ -327,6 +331,82 @@ void ShowDeleteClientScreen()
 	DeleteClientByAcoountNumber(clientsData, accountNumber);
 }
 
+//============Update Client Data ==============================/
+
+sClient ChangeClientRecord(string accountNumber)
+{
+	sClient client;
+	client.AccountNumber = accountNumber;
+	cout << "\nEnter PinCode ? ";
+	getline(cin, client.PinCode);
+	cout << "\nEnter  Name ? ";
+	getline(cin, client.Name);
+	cout << "\nEnter  Phone ? ";
+	getline(cin, client.Phone);
+	cout << "\nEnter  AccountBalance ? ";
+	cin >> client.AccountBalance;
+	cin.ignore();
+	return client;
+}
+bool UpdateClientByAcoountNumber(vector<sClient> &clients, string accountNumber)
+{
+	sClient client;
+	char answer = 'n';
+	if (FindClientByAcoountNumber(client, accountNumber))
+	{
+		PrintClient(client);
+		cout << "\n\nAre You sure you  want to update this client  ? y/n ? ";
+		cin >> answer;
+		cin.ignore();
+		if (toupper(answer) == 'Y')
+		{
+			for (sClient &c : clients)
+			{
+				if (c.AccountNumber == accountNumber)
+				{
+					c = ChangeClientRecord(accountNumber);
+					break;
+				}
+			}
+
+			SaveClientsDataToFile(clients, FILENAME);
+			// refresh data
+			clientsData = LoadClientDataFromFile(FILENAME);
+			cout << "\n\n Client " << accountNumber << " updated Successfully \n";
+			return true;
+		}
+	}
+	else
+	{
+		cout << "\n Client with Account Number (" << accountNumber << ") is Not Found!\n";
+		return false;
+	}
+}
+void ShowUpdateClientScreen()
+{
+	string accountNumber;
+	system("cls");
+	cout << "\n-------------------------------------\n";
+	cout << right << setw(30) << "Update Client  Info Screen";
+	cout << "\n-------------------------------------\n";
+	cout << "please enter account number ? ";
+	cin >> accountNumber;
+	UpdateClientByAcoountNumber(clientsData, accountNumber);
+}
+
+//==================Find Client ===================================/
+void ShowFindClientScreen(){
+	string accountNumber;
+	system("cls");
+	cout << "\n-------------------------------------\n";
+	cout << right << setw(30) << "Find Client  Screen";
+	cout << "\n-------------------------------------\n";
+	cout << "please enter account number ? ";
+	cin >> accountNumber;
+	UpdateClientByAcoountNumber(clientsData, accountNumber);
+}
+
+
 //============Show Main Menu =====================================/
 enum enMainMenuOptions
 {
@@ -382,15 +462,15 @@ void ImplementMainMenu(short selection)
 		ShowDeleteClientScreen();
 		GoBackToMainMenu();
 		break;
-		/*case enMainMenuOptions::eUpdate:
-			ShowUpdateClientScreen();
-			GoBackToMainMenu();
-			break;
-		case enMainMenuOptions::eFind:
-			ShowFindClientScreen();
-			GoBackToMainMenu();
-			break;
-		case enMainMenuOptions::eExit:
+	case enMainMenuOptions::eUpdate:
+		ShowUpdateClientScreen();
+		GoBackToMainMenu();
+		break;
+	case enMainMenuOptions::eFind:
+		ShowFindClientScreen();
+		GoBackToMainMenu();
+		break;
+		/*case enMainMenuOptions::eExit:
 			ShowEndScreen();
 				break;*/
 	}
