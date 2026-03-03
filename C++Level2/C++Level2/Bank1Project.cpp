@@ -29,11 +29,11 @@ vector<sClient> clientsData;
 // 5-Functions Declarations
 //...Menu Functions
 void ShowMainMenu();
-void ImplementMainMenu(short selection);
+void PerformMainMenuOption(short selection);
 
 //...Business Logic Functions
 void ShowClientScreen();
-void ShowAddNewClientScreen();
+void ShowAddNewClientsScreen();
 void AddNewClient();
 bool DeleteClientByAcoountNumber(vector<sClient> &clients, string accountNumber);
 bool MarkClientForDeleteByAccountNumber(vector<sClient> &clients, string accountNumber);
@@ -150,6 +150,7 @@ void SaveClientsDataToFile(vector<sClient> &clients, string filename)
 
 				string line = ConvertRecordToLine(c, DELIMETER);
 				MyFile << line << endl;
+				MyFile.close();
 			}
 		}
 	}
@@ -214,6 +215,7 @@ vector<sClient> LoadClientDataFromFile(string filename)
 		while (getline(myFile, line))
 		{
 			vClientRecords.push_back(ConvertLineToRecord(line, DELIMETER));
+			myFile.close();
 		}
 	}
 	return vClientRecords;
@@ -232,7 +234,6 @@ void PrintClientRecordDataRow(sClient client)
 void ShowClientScreen()
 {
 
-	system("cls");
 	cout << right;
 	cout << "\n\n"
 		 << setw(55) << "Client List (" << clientsData.size() << ") Client(s)" << endl;
@@ -261,12 +262,12 @@ void AddNewClient()
 	clientsData.push_back(client);
 	SaveClientsDataToFile(clientsData, FILENAME);
 }
-void ShowAddNewClientScreen()
+void ShowAddNewClientsScreen()
 {
 	char AddMore = 'y';
 	do
 	{
-		system("cls");
+
 		cout << "\n-------------------------------------\n";
 		cout << right << setw(30) << "Add New Clients Screen";
 		cout << "\n-------------------------------------\n";
@@ -322,7 +323,7 @@ bool DeleteClientByAcoountNumber(vector<sClient> &clients, string accountNumber)
 void ShowDeleteClientScreen()
 {
 	string accountNumber;
-	system("cls");
+
 	cout << "\n-------------------------------------\n";
 	cout << right << setw(30) << "Delete Client Screen";
 	cout << "\n-------------------------------------\n";
@@ -385,7 +386,7 @@ bool UpdateClientByAcoountNumber(vector<sClient> &clients, string accountNumber)
 void ShowUpdateClientScreen()
 {
 	string accountNumber;
-	system("cls");
+
 	cout << "\n-------------------------------------\n";
 	cout << right << setw(30) << "Update Client  Info Screen";
 	cout << "\n-------------------------------------\n";
@@ -395,17 +396,35 @@ void ShowUpdateClientScreen()
 }
 
 //==================Find Client ===================================/
-void ShowFindClientScreen(){
+void ShowFindClientScreen()
+{
+	sClient client;
 	string accountNumber;
-	system("cls");
+
 	cout << "\n-------------------------------------\n";
 	cout << right << setw(30) << "Find Client  Screen";
 	cout << "\n-------------------------------------\n";
 	cout << "please enter account number ? ";
 	cin >> accountNumber;
-	UpdateClientByAcoountNumber(clientsData, accountNumber);
+	client.AccountNumber = accountNumber;
+	if (FindClientByAcoountNumber(client, accountNumber))
+	{
+		PrintClient(client);
+	}
+	else
+	{
+		cout << "Client with Account Number (" << accountNumber << ") is Not Found!\n";
+	}
 }
 
+//================ End  Project================================
+void ShowEndScreen()
+{
+
+	cout << "\n-------------------------------------\n";
+	cout << right << setw(30) << "Program End :-)";
+	cout << "\n-------------------------------------\n";
+}
 
 //============Show Main Menu =====================================/
 enum enMainMenuOptions
@@ -417,9 +436,16 @@ enum enMainMenuOptions
 	eFind = 5,
 	eExit = 6
 };
-void ShowMainMenu()
+short ReadMainMenuOption()
 {
 	short selectedOption;
+	cout << "Choose what do you want to do ? [1 to 6] ? ";
+	cin >> selectedOption;
+	cin.ignore();
+}
+void ShowMainMenu()
+{
+
 	system("cls");
 	cout << "\n==========================================================\n";
 	cout << right << setw(29) << "Main Menu Screen";
@@ -431,11 +457,8 @@ void ShowMainMenu()
 	cout << "\t[5] Find Client.\n";
 	cout << "\t[6] Exit.";
 	cout << "\n==========================================================\n";
-	cout << "Choose what do you want to do ? [1 to 6] ? ";
 
-	cin >> selectedOption;
-	cin.ignore();
-	ImplementMainMenu(selectedOption);
+	PerformMainMenuOption(ReadMainMenuOption());
 }
 //*********************Message To Back To Menu List ******************************************//
 
@@ -445,33 +468,39 @@ void GoBackToMainMenu()
 	system("pause>null");
 	ShowMainMenu();
 }
-void ImplementMainMenu(short selection)
+void PerformMainMenuOption(short selection)
 {
 	enMainMenuOptions mainMenuOptions;
 	switch (selection)
 	{
 	case enMainMenuOptions::eShow:
+		system("cls");
 		ShowClientScreen();
 		GoBackToMainMenu();
 		break;
 	case enMainMenuOptions::eAdd:
-		ShowAddNewClientScreen();
+		system("cls");
+		ShowAddNewClientsScreen();
 		GoBackToMainMenu();
 		break;
 	case enMainMenuOptions::eDelete:
+		system("cls");
 		ShowDeleteClientScreen();
 		GoBackToMainMenu();
 		break;
 	case enMainMenuOptions::eUpdate:
+		system("cls");
 		ShowUpdateClientScreen();
 		GoBackToMainMenu();
 		break;
 	case enMainMenuOptions::eFind:
+		system("cls");
 		ShowFindClientScreen();
 		GoBackToMainMenu();
 		break;
-		/*case enMainMenuOptions::eExit:
-			ShowEndScreen();
-				break;*/
+	case enMainMenuOptions::eExit:
+		system("cls");
+		ShowEndScreen();
+		break;
 	}
 }
